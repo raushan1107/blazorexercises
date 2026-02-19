@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blazor Course – Hands-On Exercises</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #f4f7fa;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #512bd4, #0078d4);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 42px;
+        }
+
+        header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #512bd4;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e7f0ff;
+            color: #0078d4;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+
+        ul {
+            line-height: 1.7;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #1f2937;
+            color: white;
+        }
+
+        .progress-note {
+            background: #fff4e5;
+            padding: 15px;
+            border-left: 6px solid #ff9800;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 18px;
+            border-radius: 6px;
+            background: #512bd4;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: #3f1fa8;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Blazor Hands-On Course</h1>
+    <p>Practical Learning | Real Projects | Step-by-Step Exercises</p>
+</header>
+
+<div class="container">
+
+    <!-- Exercise 1 -->
+    <div class="card">
+        <h2>Exercise 1: Creating Your First Blazor Web Application</h2>
+
+        <span class="tag">Module 1</span>
+        <span class="tag">Blazor Overview</span>
+        <span class="tag">Server vs WASM</span>
+
+        <p>
+            In this exercise, you will create your first Blazor Server and WebAssembly application,
+            explore the project structure, and understand how ASP.NET Core powers Blazor.
+        </p>
+
+        <ul>
+            <li>Install .NET 6 SDK</li>
+            <li>Create Blazor Server project</li>
+            <li>Create Blazor WebAssembly project</li>
+            <li>Understand project structure differences</li>
+            <li>Modify Counter component</li>
+            <li>Debug application</li>
+        </ul>
+
+        <a class="btn" href="#">Start Exercise</a>
+    </div>
+
+    <!-- Exercise 2 -->
+    <div class="card">
+        <h2>Exercise 2: Build a Blazor Todo List App</h2>
+
+        <span class="tag">Module 2</span>
+        <span class="tag">Components</span>
+        <span class="tag">State Management</span>
+
+        <p>
+            Build a simple Todo List application to understand Razor components,
+            data binding, forms, and state handling in Blazor.
+        </p>
+
+        <ul>
+            <li>Create Todo model</li>
+            <li>Implement Razor components</li>
+            <li>Use @bind for two-way binding</li>
+            <li>Render dynamic lists</li>
+            <li>Refactor into reusable components</li>
+        </ul>
+
+        <a class="btn" href="#">Start Exercise</a>
+    </div>
+
+    <!-- Exercise 3 -->
+    <div class="card">
+        <h2>Exercise 3: Real-Time Todo App with SignalR</h2>
+
+        <span class="tag">Module 3</span>
+        <span class="tag">SignalR</span>
+        <span class="tag">Real-Time Updates</span>
+
+        <p>
+            Enhance the Todo app to support real-time synchronization across multiple browsers
+            using ASP.NET Core SignalR.
+        </p>
+
+        <ul>
+            <li>Create shared service</li>
+            <li>Register Singleton in DI</li>
+            <li>Subscribe to state changes</li>
+            <li>Observe real-time updates</li>
+            <li>Understand Blazor Server circuits</li>
+        </ul>
+
+        <a class="btn" href="#">Start Exercise</a>
+    </div>
+
+    <div class="progress-note">
+        🚀 More exercises will be added as we progress in the course:
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>© 2026 Blazor Learning with Raushan | Designed for Hands-On Learning</p>
+</div>
+
+</body>
+</html>
