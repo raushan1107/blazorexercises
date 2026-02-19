@@ -3,97 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blazor Hands-On Course</title>
+<title>Learn Blazor with Raushan</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #f4f7fa;
-    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+    background: #ffffff;
+    color: #1b1b1b;
 }
 
 header {
-    background: linear-gradient(135deg, #512bd4, #0078d4);
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
+    background: #f3f2f1;
+    padding: 30px 20px;
+    border-bottom: 1px solid #ddd;
 }
 
 header h1 {
     margin: 0;
-    font-size: 40px;
+    font-size: 28px;
 }
 
 .container {
-    max-width: 1000px;
-    margin: 40px auto;
+    max-width: 900px;
+    margin: 30px auto;
     padding: 20px;
 }
 
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+h2 {
+    border-bottom: 2px solid #0078d4;
+    padding-bottom: 6px;
 }
 
-details {
-    margin-top: 15px;
+h3 {
+    margin-top: 25px;
 }
 
-summary {
-    font-weight: 600;
-    cursor: pointer;
-    padding: 10px;
-    background: #eef2ff;
-    border-radius: 6px;
-}
-
-.code-container {
-    position: relative;
-    margin-top: 10px;
+.section {
+    margin-bottom: 40px;
 }
 
 pre {
-    background: #1e1e1e;
-    color: #d4d4d4;
+    background: #f3f2f1;
     padding: 15px;
     overflow-x: auto;
-    border-radius: 8px;
+    border-radius: 6px;
+    position: relative;
 }
 
-button.copy-btn {
+.copy-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #512bd4;
+    top: 8px;
+    right: 8px;
+    background: #0078d4;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 4px 10px;
     font-size: 12px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-button.copy-btn:hover {
-    background: #3f1fa8;
+.copy-btn:hover {
+    background: #005a9e;
+}
+
+.note {
+    background: #fdf6ec;
+    padding: 15px;
+    border-left: 4px solid #ffb900;
+    margin: 15px 0;
 }
 
 .footer {
-    text-align: center;
-    padding: 30px;
-    background: #1f2937;
-    color: white;
-}
-
-.quiz {
-    background: #fff4e5;
+    border-top: 1px solid #ddd;
     padding: 20px;
-    border-radius: 10px;
+    text-align: center;
+    background: #f3f2f1;
 }
 </style>
 </head>
@@ -101,46 +89,49 @@ button.copy-btn:hover {
 <body>
 
 <header>
-    <h1>Blazor Hands-On Course</h1>
-    <p>Interactive Learning | Real Projects | Step-by-Step</p>
+    <h1>RR Skillverse: Learn with Raushan</h1>
+<h3>Blazor Hands-on Exercises</h3>
+<p>Step-by-step guided exercises inspired by Microsoft Learn</p>
 </header>
 
 <div class="container">
 
-<!-- EXERCISE 1 -->
-<div class="card">
-<h2>Exercise 1 – Create Your First Blazor App</h2>
+<!-- LAB 1 -->
+<div class="section">
+<h2>Lab 1: Create Your First Blazor Application</h2>
 
-<details>
-<summary>Step 1 – Create Blazor Server App</summary>
+<h3>Objective</h3>
+<p>In this lab, you will create your first Blazor Server application and understand the project structure.</p>
 
-<div class="code-container">
-<button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre>
+<h3>Prerequisites</h3>
+<ul>
+<li>.NET 6 SDK installed</li>
+<li>Visual Studio 2022 or VS Code</li>
+</ul>
+
+<h3>Step 1: Create Project</h3>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
 dotnet new blazorserver -n FirstBlazorApp
 cd FirstBlazorApp
 dotnet run
 </pre>
-</div>
 
-<p>Open https://localhost:5001 and explore the template.</p>
-</details>
+<p>Open https://localhost:5001 in your browser.</p>
 
-<details>
-<summary>Step 2 – Modify Counter Component</summary>
+<h3>Step 2: Modify Counter Component</h3>
 
-<div class="code-container">
-<button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
 @page "/counter"
 
 <h3>Counter</h3>
+
 <p>Current count: @count</p>
 
-<input @bind="name" placeholder="Enter name" />
+<input @bind="name" placeholder="Enter your name" />
 <p>Hello @name</p>
 
-<button @onclick="Increment">Click</button>
+<button @onclick="Increment">Click me</button>
 
 @code {
     int count = 0;
@@ -152,47 +143,41 @@ dotnet run
     }
 }
 </pre>
+
+<h3>Expected Result</h3>
+<p>The counter increments and the name updates instantly without page refresh.</p>
+
 </div>
 
-</details>
+<!-- LAB 2 -->
+<div class="section">
+<h2>Lab 2: Build a Simple Todo List App</h2>
 
-</div>
+<h3>Objective</h3>
+<p>Create a Todo List application using Razor components and data binding.</p>
 
-<!-- EXERCISE 2 -->
-<div class="card">
-<h2>Exercise 2 – Build Simple Todo App</h2>
+<h3>Step 1: Create Model</h3>
 
-<details>
-<summary>Create Todo Model</summary>
-
-<div class="code-container">
-<button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
 public class TodoItem
 {
     public string Title { get; set; }
     public bool IsCompleted { get; set; }
 }
 </pre>
-</div>
 
-</details>
+<h3>Step 2: Create Todo Page</h3>
 
-<details>
-<summary>Create Todo Page</summary>
-
-<div class="code-container">
-<button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
 @page "/todo"
 
 <h3>Todo List</h3>
 
-<input @bind="newTask" />
+<input @bind="newTask" placeholder="Enter task" />
 <button @onclick="AddTask">Add</button>
 
 <ul>
-@foreach(var item in todos)
+@foreach (var item in todos)
 {
     <li>
         <input type="checkbox" @bind="item.IsCompleted" />
@@ -207,31 +192,33 @@ public class TodoItem
 
     void AddTask()
     {
-        todos.Add(new TodoItem { Title = newTask });
-        newTask = "";
+        if (!string.IsNullOrWhiteSpace(newTask))
+        {
+            todos.Add(new TodoItem { Title = newTask });
+            newTask = "";
+        }
     }
 }
 </pre>
+
+<h3>Expected Result</h3>
+<p>You can add tasks dynamically and toggle completion.</p>
+
 </div>
 
-</details>
+<!-- LAB 3 -->
+<div class="section">
+<h2>Lab 3: Real-Time Todo Sync using SignalR</h2>
 
-</div>
+<h3>Objective</h3>
+<p>Enable real-time synchronization across multiple browsers using Blazor Server.</p>
 
-<!-- EXERCISE 3 -->
-<div class="card">
-<h2>Exercise 3 – Real-Time Todo with SignalR</h2>
+<h3>Step 1: Create Shared Service</h3>
 
-<details>
-<summary>Create Shared Service</summary>
-
-<div class="code-container">
-<button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
 public class TodoService
 {
     public List<TodoItem> Todos { get; } = new();
-
     public event Action OnChange;
 
     public void Add(string title)
@@ -241,78 +228,51 @@ public class TodoService
     }
 }
 </pre>
-</div>
 
-</details>
+<h3>Step 2: Register Service</h3>
 
-<details>
-<summary>Register Service in Program.cs</summary>
-
-<div class="code-container">
-<button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
 builder.Services.AddSingleton<TodoService>();
 </pre>
-</div>
 
-</details>
+<h3>Step 3: Inject in Todo Page</h3>
 
-<details>
-<summary>Use Service in Page</summary>
-
-<div class="code-container">
-<button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<pre>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
 @inject TodoService todoService
-
-@foreach(var item in todoService.Todos)
-{
-    <li>@item.Title</li>
-}
 </pre>
+
+<div class="note">
+Open two browsers and add tasks. You will observe real-time updates powered by SignalR.
 </div>
 
-</details>
-
-<p>Open two browsers and see real-time sync working.</p>
-
 </div>
 
-<!-- QUIZ -->
-<div class="card quiz">
-<h2>End of Module Test</h2>
-
+<!-- KNOWLEDGE CHECK -->
+<div class="section">
+<h2>Knowledge Check</h2>
 <ol>
-<li>What is the main difference between Blazor Server and WebAssembly?</li>
-<li>What lifecycle method runs only once?</li>
-<li>What does @bind do?</li>
-<li>Why does Blazor Server use SignalR?</li>
-<li>Where is Dependency Injection configured?</li>
-<li>What file acts as entry point in Blazor Server?</li>
 <li>What is a Razor Component?</li>
-<li>How do you register a service as Singleton?</li>
-<li>How do you create a route in Blazor?</li>
-<li>What happens if SignalR disconnects?</li>
+<li>What does @bind provide?</li>
+<li>What is the difference between Blazor Server and WebAssembly?</li>
+<li>Why does Blazor Server use SignalR?</li>
+<li>What happens when a component state changes?</li>
 </ol>
-
-<p><strong>Bonus Task:</strong> Extend the Todo app to allow deleting tasks.</p>
-
 </div>
 
-<div class="card">
-<h2>More Exercises Coming Soon</h2>
+<div class="section">
+<h2>More exercises will be added as we will pregress.</h2>
 </div>
 
 </div>
 
 <div class="footer">
-© Blazor Learning with Raushan | Hands-On Learning Journey
+Blazor Exercises by Raushan Ranjan (MCT) | More exercises will be added as we progress.
 </div>
 
 <script>
 function copyCode(button) {
-    const codeBlock = button.parentElement.querySelector("pre");
-    navigator.clipboard.writeText(codeBlock.innerText);
+    const code = button.parentElement.innerText.replace("Copy", "").trim();
+    navigator.clipboard.writeText(code);
     button.innerText = "Copied!";
     setTimeout(() => button.innerText = "Copy", 2000);
 }
