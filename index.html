@@ -137,8 +137,20 @@ code {
 
 <!-- LAB 1 -->
 <div class="lab">
-<h3>Lab 1 – Create Your First Blazor App</h3>
-<p>Create a new Blazor Server application and run it.</p>
+<h3>Lab 1 – Create Your First Blazor Application</h3>
+
+<p><strong>Objective:</strong> Create and run your first Blazor Server application.</p>
+
+<h4>Step 1: Install .NET 6 SDK</h4>
+<p>Verify installation:</p>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+dotnet --version
+</code></pre>
+
+<p>If not installed, download .NET 6 SDK from official Microsoft website.</p>
+
+<h4>Step 2: Create Project</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 dotnet new blazorserver -n FirstBlazorApp
@@ -146,13 +158,26 @@ cd FirstBlazorApp
 dotnet run
 </code></pre>
 
-<p>Open https://localhost:5001 and explore the default template.</p>
+<h4>Step 3: Open in Browser</h4>
+<p>Navigate to:</p>
+
+<pre><code>https://localhost:5001</code></pre>
+
+<p><strong>Expected Result:</strong> You should see the default Blazor template running.</p>
+
+<p><strong>What You Learned:</strong> How to create and run a Blazor Server app.</p>
 </div>
 
 <!-- LAB 2 -->
 <div class="lab">
-<h3>Lab 2 – Enhance Counter Component</h3>
-<p>Add name binding and dynamic greeting.</p>
+<h3>Lab 2 – Modify Counter Component</h3>
+
+<p><strong>Objective:</strong> Understand Razor components and two-way binding.</p>
+
+<h4>Step 1: Open Counter.razor</h4>
+<p>Navigate to <code>Pages/Counter.razor</code></p>
+
+<h4>Step 2: Replace Code With</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 @page "/counter"
@@ -164,16 +189,38 @@ dotnet run
     string name = "";
 }
 </code></pre>
+
+<h4>Step 3: Save and Refresh</h4>
+<p>Type inside the input field and observe dynamic updates.</p>
+
+<p><strong>Expected Result:</strong> Greeting updates instantly without page reload.</p>
+
+<p><strong>Concept Covered:</strong> Razor syntax, @bind, component rendering.</p>
 </div>
 
 <!-- LAB 3 -->
 <div class="lab">
 <h3>Lab 3 – Build Todo List</h3>
-<p>Create a simple Todo list with add functionality.</p>
+
+<p><strong>Objective:</strong> Build a basic Todo application.</p>
+
+<h4>Step 1: Create New Razor Page</h4>
+<p>Create <code>Pages/Todo.razor</code></p>
+
+<h4>Step 2: Add Below Code</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+@page "/todo"
+
 &lt;input @bind="newTask" /&gt;
 &lt;button @onclick="AddTask"&gt;Add&lt;/button&gt;
+
+&lt;ul&gt;
+@foreach (var item in todos)
+{
+    &lt;li&gt;@item&lt;/li&gt;
+}
+&lt;/ul&gt;
 
 @code {
     string newTask;
@@ -181,50 +228,77 @@ dotnet run
 
     void AddTask()
     {
-        todos.Add(newTask);
-        newTask = "";
+        if (!string.IsNullOrWhiteSpace(newTask))
+        {
+            todos.Add(newTask);
+            newTask = "";
+        }
     }
 }
 </code></pre>
+
+<h4>Step 3: Add Navigation Link</h4>
+<p>Update <code>NavMenu.razor</code> to include Todo link.</p>
+
+<p><strong>Expected Result:</strong> You can add tasks dynamically.</p>
+
+<p><strong>Concept Covered:</strong> Loops, state management, UI re-rendering.</p>
 </div>
 
 <!-- LAB 4 -->
 <div class="lab">
-<h3>Lab 4 – Add Delete Feature</h3>
-<p>Allow users to delete tasks.</p>
+<h3>Lab 4 – Add Delete Functionality</h3>
+
+<p><strong>Objective:</strong> Enhance Todo app with delete feature.</p>
+
+<h4>Modify the Loop</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-&lt;button @onclick="() =&gt; RemoveTask(item)"&gt;Delete&lt;/button&gt;
+&lt;li&gt;
+    @item
+    &lt;button @onclick="() =&gt; RemoveTask(item)"&gt;Delete&lt;/button&gt;
+&lt;/li&gt;
 
 void RemoveTask(string task)
 {
     todos.Remove(task);
 }
 </code></pre>
+
+<p><strong>Expected Result:</strong> You can delete tasks from list.</p>
 </div>
 
 <!-- LAB 5 -->
 <div class="lab">
-<h3>Lab 5 – Convert Todo into Component</h3>
-<p>Create a reusable Razor component for TodoItem.</p>
+<h3>Lab 5 – Convert Todo Item into Component</h3>
+
+<p><strong>Objective:</strong> Learn component reusability.</p>
+
+<h4>Create File: Shared/TodoItem.razor</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-&lt;TodoItem Item="item" /&gt;
+&lt;li&gt;@Item&lt;/li&gt;
 
 @code {
     [Parameter]
     public string Item { get; set; }
 }
 </code></pre>
+
+<p>Update Todo page to use:</p>
+
+<pre><code>&lt;TodoItem Item="item" /&gt;</code></pre>
+
+<p><strong>Concept Covered:</strong> Component parameters and reusability.</p>
 </div>
 
 <!-- LAB 6 -->
 <div class="lab">
 <h3>Lab 6 – Real-Time Sync with SignalR</h3>
 
-<p>Now we enable real-time synchronization between multiple browsers using Blazor Server.</p>
+<p><strong>Objective:</strong> Enable real-time updates across browsers.</p>
 
-<h4>Step 1: Create Shared Service</h4>
+<h4>Step 1: Create Service (Services/TodoService.cs)</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 public class TodoService
@@ -246,7 +320,7 @@ public class TodoService
 builder.Services.AddSingleton&lt;TodoService&gt;();
 </code></pre>
 
-<h4>Step 3: Inject into Page</h4>
+<h4>Step 3: Inject into Todo Page</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 @inject TodoService todoService
@@ -258,14 +332,17 @@ protected override void OnInitialized()
 </code></pre>
 
 <div class="note">
-Open two browser windows. Add a task in one window.  
-You will observe automatic update in the second window.  
-This happens because Blazor Server uses SignalR internally to maintain a real-time connection.
+Open two browsers.  
+Add task in one window.  
+Observe instant update in second window.  
+Blazor Server uses SignalR internally for real-time communication.
 </div>
 
+<p><strong>Concept Covered:</strong> Dependency Injection, Events, Real-Time UI updates.</p>
 </div>
 
 </details>
+
 
 </div>
 
