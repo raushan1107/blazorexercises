@@ -3,67 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn Blazor with Raushan</title>
+<title>RR Skillverse | Blazor Labs</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <link rel="icon" href="data:image/svg+xml,
 <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
-<text y=%22.9em%22 font-size=%2290%22>🔥</text>
+<text y=%22.9em%22 font-size=%2290%22>🚀</text>
 </svg>">
+
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background: #ffffff;
     color: #1b1b1b;
+    line-height: 1.6;
 }
 
+/* ===== HEADER ===== */
 header {
-    background: #f3f2f1;
-    padding: 30px 20px;
-    border-bottom: 1px solid #ddd;
+    background: linear-gradient(135deg, #512bd4, #0078d4);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
 }
 
 header h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: 40px;
+    font-weight: 700;
 }
 
-.container {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
+header h2 {
+    margin: 10px 0;
+    font-weight: 400;
+    opacity: 0.95;
+}
+
+header p {
+    margin: 0;
+    opacity: 0.85;
+}
+
+/* ===== LAYOUT ===== */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 260px;
+    background: #f3f2f1;
+    border-right: 1px solid #e1e1e1;
+    padding: 25px 15px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #512bd4;
+}
+
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 8px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.sidebar a:hover {
+    background: #e5e5ff;
+}
+
+/* ===== CONTENT ===== */
+.content {
+    flex: 1;
+    padding: 40px 60px;
+    max-width: 1000px;
+}
+
+section {
+    margin-bottom: 70px;
 }
 
 h2 {
-    border-bottom: 2px solid #0078d4;
-    padding-bottom: 6px;
+    font-size: 26px;
+    color: #512bd4;
+    margin-bottom: 15px;
 }
 
 h3 {
-    margin-top: 25px;
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
-.section {
-    margin-bottom: 40px;
-}
-
+/* ===== CODE BLOCK ===== */
 pre {
-    background: #f3f2f1;
-    padding: 15px;
+    background: #f6f8fa;
+    padding: 18px;
     overflow-x: auto;
-    border-radius: 6px;
+    border-radius: 8px;
     position: relative;
+    font-size: 14px;
+    border: 1px solid #e1e4e8;
+}
+
+code {
+    font-family: Consolas, monospace;
 }
 
 .copy-btn {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 10px;
+    right: 10px;
     background: #0078d4;
     color: white;
     border: none;
-    padding: 4px 10px;
+    padding: 6px 12px;
     font-size: 12px;
     border-radius: 4px;
     cursor: pointer;
@@ -73,18 +143,35 @@ pre {
     background: #005a9e;
 }
 
+/* ===== NOTE ===== */
 .note {
-    background: #fdf6ec;
+    background: #fff4e5;
     padding: 15px;
     border-left: 4px solid #ffb900;
-    margin: 15px 0;
+    margin: 20px 0;
 }
 
+/* ===== FOOTER ===== */
 .footer {
     border-top: 1px solid #ddd;
     padding: 20px;
     text-align: center;
     background: #f3f2f1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .layout {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .content {
+        padding: 20px;
+    }
 }
 </style>
 </head>
@@ -92,49 +179,49 @@ pre {
 <body>
 
 <header>
-    <h1>RR Skillverse: Learn with Raushan</h1>
-<h3>Blazor Hands-on Exercises</h3>
-<p>Step-by-step guided exercises inspired by Microsoft Learn</p>
+    <h1>RR Skillverse</h1>
+    <h2>Learn Blazor with Raushan</h2>
+    <p>Hands-on Labs Designed by a Senior Corporate Trainer & Developer</p>
 </header>
 
-<div class="container">
+<div class="layout">
 
-<!-- LAB 1 -->
-<div class="section">
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h3>Labs Navigation</h3>
+    <a href="#lab1">Lab 1 - First Blazor App</a>
+    <a href="#lab2">Lab 2 - Todo App</a>
+    <a href="#lab3">Lab 3 - SignalR</a>
+    <a href="#knowledge">Knowledge Check</a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<section id="lab1">
 <h2>Lab 1: Create Your First Blazor Application</h2>
-
-<h3>Objective</h3>
-<p>In this lab, you will create your first Blazor Server application and understand the project structure.</p>
-
-<h3>Prerequisites</h3>
-<ul>
-<li>.NET 6 SDK installed</li>
-<li>Visual Studio 2022 or VS Code</li>
-</ul>
 
 <h3>Step 1: Create Project</h3>
 
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 dotnet new blazorserver -n FirstBlazorApp
 cd FirstBlazorApp
 dotnet run
-</pre>
-
-<p>Open https://localhost:5001 in your browser.</p>
+</code></pre>
 
 <h3>Step 2: Modify Counter Component</h3>
 
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 @page "/counter"
 
-<h3>Counter</h3>
+&lt;h3&gt;Counter&lt;/h3&gt;
 
-<p>Current count: @count</p>
+&lt;p&gt;Current count: @count&lt;/p&gt;
 
-<input @bind="name" placeholder="Enter your name" />
-<p>Hello @name</p>
+&lt;input @bind="name" placeholder="Enter your name" /&gt;
+&lt;p&gt;Hello @name&lt;/p&gt;
 
-<button @onclick="Increment">Click me</button>
+&lt;button @onclick="Increment"&gt;Click me&lt;/button&gt;
 
 @code {
     int count = 0;
@@ -145,53 +232,34 @@ dotnet run
         count++;
     }
 }
-</pre>
+</code></pre>
 
-<h3>Expected Result</h3>
-<p>The counter increments and the name updates instantly without page refresh.</p>
+</section>
 
-</div>
+<section id="lab2">
+<h2>Lab 2: Build a Simple Todo App</h2>
 
-<!-- LAB 2 -->
-<div class="section">
-<h2>Lab 2: Build a Simple Todo List App</h2>
-
-<h3>Objective</h3>
-<p>Create a Todo List application using Razor components and data binding.</p>
-
-<h3>Step 1: Create Model</h3>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
-public class TodoItem
-{
-    public string Title { get; set; }
-    public bool IsCompleted { get; set; }
-}
-</pre>
-
-<h3>Step 2: Create Todo Page</h3>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 @page "/todo"
 
-<h3>Todo List</h3>
+&lt;h3&gt;Todo List&lt;/h3&gt;
 
-<input @bind="newTask" placeholder="Enter task" />
-<button @onclick="AddTask">Add</button>
+&lt;input @bind="newTask" placeholder="Enter task" /&gt;
+&lt;button @onclick="AddTask"&gt;Add&lt;/button&gt;
 
-<ul>
+&lt;ul&gt;
 @foreach (var item in todos)
 {
-    <li>
-        <input type="checkbox" @bind="item.IsCompleted" />
+    &lt;li&gt;
+        &lt;input type="checkbox" @bind="item.IsCompleted" /&gt;
         @item.Title
-    </li>
+    &lt;/li&gt;
 }
-</ul>
+&lt;/ul&gt;
 
 @code {
     string newTask;
-    List<TodoItem> todos = new();
+    List&lt;TodoItem&gt; todos = new();
 
     void AddTask()
     {
@@ -202,79 +270,42 @@ public class TodoItem
         }
     }
 }
-</pre>
+</code></pre>
 
-<h3>Expected Result</h3>
-<p>You can add tasks dynamically and toggle completion.</p>
+</section>
 
-</div>
-
-<!-- LAB 3 -->
-<div class="section">
-<h2>Lab 3: Real-Time Todo Sync using SignalR</h2>
-
-<h3>Objective</h3>
-<p>Enable real-time synchronization across multiple browsers using Blazor Server.</p>
-
-<h3>Step 1: Create Shared Service</h3>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
-public class TodoService
-{
-    public List<TodoItem> Todos { get; } = new();
-    public event Action OnChange;
-
-    public void Add(string title)
-    {
-        Todos.Add(new TodoItem { Title = title });
-        OnChange?.Invoke();
-    }
-}
-</pre>
-
-<h3>Step 2: Register Service</h3>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
-builder.Services.AddSingleton<TodoService>();
-</pre>
-
-<h3>Step 3: Inject in Todo Page</h3>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
-@inject TodoService todoService
-</pre>
+<section id="lab3">
+<h2>Lab 3: Real-Time Sync using SignalR</h2>
 
 <div class="note">
-Open two browsers and add tasks. You will observe real-time updates powered by SignalR.
+Open two browser windows and observe real-time updates powered by Blazor Server & SignalR.
 </div>
 
-</div>
+</section>
 
-<!-- KNOWLEDGE CHECK -->
-<div class="section">
+<section id="knowledge">
 <h2>Knowledge Check</h2>
+
 <ol>
 <li>What is a Razor Component?</li>
 <li>What does @bind provide?</li>
-<li>What is the difference between Blazor Server and WebAssembly?</li>
+<li>Difference between Server and WASM?</li>
 <li>Why does Blazor Server use SignalR?</li>
-<li>What happens when a component state changes?</li>
+<li>What is a circuit in Blazor Server?</li>
 </ol>
-</div>
 
-<div class="section">
-<h2>More exercises will be added as we will pregress.</h2>
-</div>
+</section>
 
+</div>
 </div>
 
 <div class="footer">
-Blazor Exercises by Raushan Ranjan (MCT) | More exercises will be added as we progress.
+Blazor Labs by Raushan Ranjan (MCT) | More exercises coming soon.
 </div>
 
 <script>
 function copyCode(button) {
-    const code = button.parentElement.innerText.replace("Copy", "").trim();
+    const code = button.parentElement.querySelector("code").innerText;
     navigator.clipboard.writeText(code);
     button.innerText = "Copied!";
     setTimeout(() => button.innerText = "Copy", 2000);
