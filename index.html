@@ -220,10 +220,20 @@ We use InvokeAsync(StateHasChanged) to safely refresh UI across browser circuits
 <details id="path2">
 <summary>Learning Path 2: Structured Application Development</summary>
 
+<!-- LAB 7 -->
 <div class="lab">
-<h3>Lab 7 – Create Task Model</h3>
+<h3>Lab 7 – Create a Task Model (Structured Data)</h3>
 
-<p><strong>Objective:</strong> Move from simple strings to structured data.</p>
+<p><strong>Objective:</strong> Convert simple text-based tasks into structured objects.</p>
+
+<h4>Step 1: Create a Models Folder</h4>
+<p>Inside your project, create a new folder named <code>Models</code>.</p>
+
+<h4>Step 2: Create a New File</h4>
+<p>Create a new file inside Models folder:</p>
+<p><code>TaskItem.cs</code></p>
+
+<h4>Step 3: Add the Following Code</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 public class TaskItem
@@ -234,62 +244,183 @@ public class TaskItem
 }
 </code></pre>
 
-<p><strong>Explanation:</strong> Models define the structure of your application data.</p>
+<h4>Step 4: Save and Build the Project</h4>
+<p>Make sure the project builds successfully.</p>
+
+<div class="note">
+💡 You are now defining a structured data model instead of using simple strings.
+</div>
 </div>
 
+<!-- LAB 8 -->
 <div class="lab">
 <h3>Lab 8 – Update Todo to Use TaskItem</h3>
 
-<p>Change list type to:</p>
+<p><strong>Objective:</strong> Replace <code>List&lt;string&gt;</code> with <code>List&lt;TaskItem&gt;</code>.</p>
+
+<h4>Step 1: Open Todo Page</h4>
+<p>Go to: <code>Pages/Todo.razor</code></p>
+
+<h4>Step 2: Change List Type</h4>
+<p>Find this line:</p>
+
+<pre><code>List&lt;string&gt; todos = new();</code></pre>
+
+<p>Replace it with:</p>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-List&lt;TaskItem&gt; tasks = new();
+List<TaskItem> tasks = new();
 </code></pre>
 
-<p>Display title using:</p>
+<h4>Step 3: Update Add Method</h4>
+<p>Instead of adding a string, create a new TaskItem object and add it to the list.</p>
 
-<pre><code>@task.Title</code></pre>
+<p>Assign:</p>
+<ul>
+<li>Title</li>
+<li>IsCompleted = false</li>
+</ul>
+
+<h4>Step 4: Update Display</h4>
+<p>Inside the foreach loop, change:</p>
+
+<pre><code>@item</code></pre>
+
+<p>To:</p>
+
+<pre><code>@item.Title</code></pre>
+
+<h4>Step 5: Run and Test</h4>
+<p>Add a task and confirm it appears correctly.</p>
+
+<div class="note">
+💡 You have now migrated from simple data to object-based structured data.
+</div>
 </div>
 
+<!-- LAB 9 -->
 <div class="lab">
 <h3>Lab 9 – Add Completion Toggle</h3>
 
+<p><strong>Objective:</strong> Allow marking a task as completed.</p>
+
+<h4>Step 1: Modify the foreach Loop</h4>
+<p>Inside your task loop, add a checkbox before the title.</p>
+
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-&lt;input type="checkbox" @bind="task.IsCompleted" /&gt;
+<input type="checkbox" @bind="task.IsCompleted" />
 </code></pre>
 
-<p><strong>Explanation:</strong> UI directly binds to model property.</p>
+<h4>Step 2: Show Status Text</h4>
+<p>Next to the title, display:</p>
+<ul>
+<li>"Completed" if true</li>
+<li>"Pending" if false</li>
+</ul>
+
+<h4>Step 3: Run and Test</h4>
+<p>Tick the checkbox and observe instant UI update.</p>
+
+<div class="note">
+💡 Blazor automatically re-renders UI when bound properties change.
+</div>
 </div>
 
+<!-- LAB 10 -->
 <div class="lab">
 <h3>Lab 10 – Navigation Between Pages</h3>
 
+<p><strong>Objective:</strong> Create separate Add Task page.</p>
+
+<h4>Step 1: Create New Page</h4>
+<p>Create file: <code>Pages/AddTask.razor</code></p>
+
+<h4>Step 2: Add Basic Form</h4>
+<p>Add input field and Save button.</p>
+
+<h4>Step 3: Inject NavigationManager</h4>
+
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 @inject NavigationManager nav
+</code></pre>
+
+<h4>Step 4: After Saving Task</h4>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 nav.NavigateTo("/todo");
 </code></pre>
 
-<p><strong>Explanation:</strong> NavigationManager enables programmatic routing.</p>
+<h4>Step 5: Add Navigation Link</h4>
+<p>Update <code>NavMenu.razor</code> and add link to Add Task page.</p>
+
+<div class="note">
+💡 NavigationManager allows routing programmatically.
+</div>
 </div>
 
+<!-- LAB 11 -->
 <div class="lab">
 <h3>Lab 11 – Add Logging</h3>
 
+<p><strong>Objective:</strong> Track when tasks are added.</p>
+
+<h4>Step 1: Open TodoService.cs</h4>
+
+<h4>Step 2: Inject ILogger</h4>
+
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-_logger.LogInformation("Task added");
+private readonly ILogger<TodoService> _logger;
+
+public TodoService(ILogger<TodoService> logger)
+{
+    _logger = logger;
+}
 </code></pre>
 
-<p><strong>Explanation:</strong> Logging helps monitor real applications.</p>
+<h4>Step 3: Log Inside Add Method</h4>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+_logger.LogInformation("Task added: " + task.Title);
+</code></pre>
+
+<h4>Step 4: Run Application</h4>
+<p>Check terminal/console output when adding tasks.</p>
+
+<div class="note">
+💡 Logging is essential for monitoring real applications.
+</div>
 </div>
 
+<!-- LAB 12 -->
 <div class="lab">
 <h3>Lab 12 – Add Search Feature</h3>
 
+<p><strong>Objective:</strong> Filter tasks dynamically.</p>
+
+<h4>Step 1: Add Search Input</h4>
+
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-tasks.Where(t =&gt; t.Title.Contains(searchText));
+<input @bind="searchText" placeholder="Search task..." />
 </code></pre>
 
-<p><strong>Explanation:</strong> Filter data dynamically without modifying original list.</p>
+<h4>Step 2: Create Filtered List</h4>
+<p>Before the foreach loop, create a filtered list using LINQ:</p>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+var filteredTasks = tasks
+    .Where(t => t.Title.Contains(searchText ?? "", StringComparison.OrdinalIgnoreCase))
+    .ToList();
+</code></pre>
+
+<h4>Step 3: Loop Over Filtered List</h4>
+<p>Replace original list with filteredTasks in foreach.</p>
+
+<h4>Step 4: Test</h4>
+<p>Add multiple tasks and try searching.</p>
+
+<div class="note">
+💡 We filter only for display. Original data remains unchanged.
+</div>
 </div>
 
 </details>
