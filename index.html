@@ -203,11 +203,208 @@ footer {
 
 </div>
 <!-- ================= END EXERCISE 1 ================= -->
+<!-- ================= MODULE 2 ================= -->
+<div class="section-title">Module 2: Razor Components & Data Binding</div>
 
-<!-- Future exercises will go here -->
-<!-- Just duplicate the exercise-card block -->
+<!-- ================= EXERCISE 2 ================= -->
+<div class="exercise-card">
+
+    <div class="exercise-header">
+        <div class="exercise-title">Exercise 2 – Understanding Two-Way Binding</div>
+        <div class="badge">Beginner</div>
+    </div>
+
+    <div class="objective">
+        <strong>Objective:</strong> Learn how UI elements bind directly to C# variables.
+    </div>
+
+    <div class="step">
+        <h4>Step 1 – Open Counter Page</h4>
+        <p>Navigate to:</p>
+        <pre><code>Pages/Counter.razor</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 2 – Replace Content With:</h4>
+<pre><code>
+@page "/counter"
+
+&lt;input @bind="name" placeholder="Enter your name" /&gt;
+
+&lt;p&gt;Hello @name&lt;/p&gt;
+
+@code {
+    string name = "";
+}
+</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 3 – Run the Application</h4>
+        <p>Type inside the input field.</p>
+        <p>Observe how the greeting updates automatically.</p>
+    </div>
+
+    <div class="note">
+        💡 <strong>@bind</strong> creates two-way data binding between UI and C# variable.
+    </div>
 
 </div>
+
+
+<!-- ================= EXERCISE 3 ================= -->
+<div class="exercise-card">
+
+    <div class="exercise-header">
+        <div class="exercise-title">Exercise 3 – Handling Button Click Events</div>
+        <div class="badge">Beginner</div>
+    </div>
+
+    <div class="objective">
+        <strong>Objective:</strong> Trigger C# methods from UI events.
+    </div>
+
+    <div class="step">
+        <h4>Step 1 – Modify Counter Page</h4>
+        <p>Replace content with:</p>
+
+<pre><code>
+@page "/counter"
+
+&lt;h3&gt;Counter&lt;/h3&gt;
+
+&lt;p&gt;Current count: @count&lt;/p&gt;
+
+&lt;button @onclick="Increment"&gt;Increase&lt;/button&gt;
+
+@code {
+    int count = 0;
+
+    void Increment()
+    {
+        count++;
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 2 – Run and Click Button</h4>
+        <p>Notice how the value increases without refreshing.</p>
+    </div>
+
+    <div class="note">
+        💡 @onclick connects button click to C# method.
+    </div>
+
+</div>
+
+
+<!-- ================= EXERCISE 4 ================= -->
+<div class="exercise-card">
+
+    <div class="exercise-header">
+        <div class="exercise-title">Exercise 4 – Rendering Lists with foreach</div>
+        <div class="badge">Core Concept</div>
+    </div>
+
+    <div class="objective">
+        <strong>Objective:</strong> Render dynamic lists using Razor syntax.
+    </div>
+
+    <div class="step">
+        <h4>Step 1 – Create New Page</h4>
+        <pre><code>Pages/ListDemo.razor</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 2 – Add Below Code</h4>
+
+<pre><code>
+@page "/listdemo"
+
+&lt;h3&gt;Student List&lt;/h3&gt;
+
+&lt;ul&gt;
+@foreach (var student in students)
+{
+    &lt;li&gt;@student&lt;/li&gt;
+}
+&lt;/ul&gt;
+
+@code {
+    List&lt;string&gt; students = new()
+    {
+        "Raushan",
+        "Ritu",
+        "Rahul"
+    };
+}
+</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 3 – Run and Navigate to /listdemo</h4>
+    </div>
+
+    <div class="note">
+        💡 Razor loops generate UI dynamically from collections.
+    </div>
+
+</div>
+
+
+<!-- ================= EXERCISE 5 ================= -->
+<div class="exercise-card">
+
+    <div class="exercise-header">
+        <div class="exercise-title">Exercise 5 – Conditional Rendering</div>
+        <div class="badge">Core Concept</div>
+    </div>
+
+    <div class="objective">
+        <strong>Objective:</strong> Show or hide content based on conditions.
+    </div>
+
+    <div class="step">
+        <h4>Step 1 – Modify ListDemo Page</h4>
+        <p>Add a button and condition:</p>
+
+<pre><code>
+&lt;button @onclick="Toggle"&gt;Toggle List&lt;/button&gt;
+
+@if (showList)
+{
+    &lt;ul&gt;
+    @foreach (var student in students)
+    {
+        &lt;li&gt;@student&lt;/li&gt;
+    }
+    &lt;/ul&gt;
+}
+
+@code {
+    bool showList = true;
+
+    void Toggle()
+    {
+        showList = !showList;
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 2 – Run and Click Toggle</h4>
+    </div>
+
+    <div class="note">
+        💡 Blazor re-renders components automatically when state changes.
+    </div>
+
+</div>
+</div>
+
 
 <footer>
 More exercises coming soon: Components • Routing • DI • Logging • Real-Time Sync
