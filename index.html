@@ -544,7 +544,268 @@ builder.Services.AddSingleton&lt;TicketService&gt;();
 </div>
 
 </div>
-    
+    <!-- ================= EXERCISE 5 ================= -->
+<div class="exercise-card">
+
+<div class="exercise-header">
+    <div class="exercise-title">Exercise 5 – Create Tickets Listing Page</div>
+    <div class="badge">UI + Lifecycle</div>
+</div>
+
+<div class="objective">
+    <strong>Objective:</strong> Display all tickets and enable real-time refresh when data changes.
+</div>
+
+<div class="step">
+    <h4>Step 1 – Create Page</h4>
+    <p>Create file:</p>
+    <pre><code>Pages/Tickets.razor</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 2 – Add Routing & Inject Service</h4>
+<pre><code>
+@page "/tickets"
+@inject TicketService ticketService
+</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 3 – Load Tickets in OnInitialized</h4>
+<pre><code>
+List&lt;Ticket&gt; tickets;
+
+protected override void OnInitialized()
+{
+    tickets = ticketService.GetTickets();
+    ticketService.OnChange += Refresh;
+}
+</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 4 – Implement Refresh Method</h4>
+<pre><code>
+private void Refresh()
+{
+    InvokeAsync(() =>
+    {
+        tickets = ticketService.GetTickets();
+        StateHasChanged();
+    });
+}
+</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 5 – Unsubscribe in Dispose</h4>
+<pre><code>
+public void Dispose()
+{
+    ticketService.OnChange -= Refresh;
+}
+</code></pre>
+</div>
+
+<div class="note">
+💡 We subscribe to service events so all users see updates instantly.
+</div>
+
+</div>
+
+
+
+<!-- ================= EXERCISE 6 ================= -->
+<div class="exercise-card">
+
+<div class="exercise-header">
+    <div class="exercise-title">Exercise 6 – Create Reusable TicketCard Component</div>
+    <div class="badge">Component Design</div>
+</div>
+
+<div class="objective">
+    <strong>Objective:</strong> Build a reusable component for displaying ticket information.
+</div>
+
+<div class="step">
+    <h4>Step 1 – Create Component</h4>
+    <pre><code>Shared/TicketCard.razor</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 2 – Add Parameter</h4>
+<pre><code>
+[Parameter]
+public Ticket Ticket { get; set; }
+</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 3 – Inject Services</h4>
+<pre><code>
+@inject TicketService ticketService
+@inject NavigationManager nav
+</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 4 – Add Resolve Button</h4>
+<pre><code>
+@if (!Ticket.IsResolved)
+{
+    &lt;button @onclick="() =&gt; ticketService.ResolveTicket(Ticket.Id)"&gt;
+        Resolve
+    &lt;/button&gt;
+}
+</code></pre>
+</div>
+
+<div class="note">
+💡 This component combines DI + Parameters + Event handling.
+</div>
+
+</div>
+
+
+
+<!-- ================= EXERCISE 7 ================= -->
+<div class="exercise-card">
+
+<div class="exercise-header">
+    <div class="exercise-title">Exercise 7 – Create Ticket Form Page</div>
+    <div class="badge">Form Binding</div>
+</div>
+
+<div class="objective">
+    <strong>Objective:</strong> Allow employees to raise support tickets.
+</div>
+
+<div class="step">
+    <h4>Step 1 – Create Page</h4>
+    <pre><code>Pages/CreateTicket.razor</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 2 – Inject Dependencies</h4>
+<pre><code>
+@inject TicketService ticketService
+@inject NavigationManager nav
+</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 3 – Create Form Inputs</h4>
+<pre><code>
+&lt;input @bind="title" placeholder="Title" /&gt;
+&lt;textarea @bind="description"&gt;&lt;/textarea&gt;
+&lt;input @bind="createdBy" placeholder="Your Name" /&gt;
+</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 4 – Call Service on Submit</h4>
+<pre><code>
+void Save()
+{
+    ticketService.AddTicket(new Ticket
+    {
+        Title = title,
+        Description = description,
+        CreatedBy = createdBy
+    });
+
+    nav.NavigateTo("/tickets");
+}
+</code></pre>
+</div>
+
+<div class="note">
+💡 @bind connects form inputs directly to C# variables.
+</div>
+
+</div>
+
+
+
+<!-- ================= EXERCISE 8 ================= -->
+<div class="exercise-card">
+
+<div class="exercise-header">
+    <div class="exercise-title">Exercise 8 – Dynamic Routing with Parameter</div>
+    <div class="badge">Routing</div>
+</div>
+
+<div class="objective">
+    <strong>Objective:</strong> Display ticket details using route parameter.
+</div>
+
+<div class="step">
+    <h4>Step 1 – Create Page</h4>
+    <pre><code>Pages/TicketDetails.razor</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 2 – Add Route Parameter</h4>
+<pre><code>
+@page "/ticket/{Id:int}"
+</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 3 – Add Parameter Property</h4>
+<pre><code>
+[Parameter]
+public int Id { get; set; }
+</code></pre>
+</div>
+
+<div class="step">
+    <h4>Step 4 – Load Data in OnParametersSet</h4>
+<pre><code>
+protected override void OnParametersSet()
+{
+    ticket = ticketService.GetById(Id);
+}
+</code></pre>
+</div>
+
+<div class="note">
+💡 Route parameters allow dynamic page rendering.
+</div>
+
+</div>
+
+
+
+<!-- ================= EXERCISE 9 ================= -->
+<div class="exercise-card">
+
+<div class="exercise-header">
+    <div class="exercise-title">Exercise 9 – Real-Time Demonstration</div>
+    <div class="badge">Live Demo</div>
+</div>
+
+<div class="objective">
+    <strong>Objective:</strong> Observe real-time synchronization using Singleton + Events.
+</div>
+
+<div class="step">
+    <h4>Classroom Activity</h4>
+    <ul>
+        <li>Run application</li>
+        <li>Open /tickets in two browsers</li>
+        <li>Create ticket in one</li>
+        <li>Observe second browser auto-refresh</li>
+        <li>Resolve ticket</li>
+        <li>Watch console logs</li>
+    </ul>
+</div>
+
+<div class="note">
+💡 Blazor Server maintains live SignalR connection per user.
+</div>
+
+</div>
 
 
 <footer>
