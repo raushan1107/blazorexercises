@@ -3,133 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RR Skillverse | Blazor Learning Portal</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- Browser Icon -->
+<link rel="icon" href="data:,✨">
+
+<title>✨ RR Skillverse | Blazor Learning Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing: border-box; }
-
-body {
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f9fafb;
-    color: #1f2937;
-    line-height: 1.6;
+    padding: 0;
 }
 
-/* HEADER */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f8fafc, #eef2ff);
+    color: #1e293b;
+}
+
+/* ===== HEADER ===== */
 header {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 25px 20px;
+    padding: 30px 20px;
     text-align: center;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
 }
 
 header p {
-    margin: 6px 0 0 0;
     font-size: 14px;
-    color: #6b7280;
+    color: #64748b;
+    margin-top: 6px;
 }
 
-/* NAVIGATION */
-.navbar {
-    background: #111827;
-    padding: 10px 20px;
-    text-align: center;
-}
-
-.navbar a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
-}
-
-/* MAIN */
+/* ===== CONTAINER ===== */
 .container {
     max-width: 950px;
-    margin: 40px auto;
+    margin: 30px auto 80px auto;
     padding: 0 20px;
 }
 
-/* LEARNING PATH */
-details {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    padding: 15px 20px;
-}
-
-summary {
-    font-size: 18px;
+/* ===== SECTION TITLE ===== */
+.section-title {
+    font-size: 20px;
     font-weight: 600;
-    cursor: pointer;
-    padding: 10px 0;
+    margin-bottom: 25px;
 }
 
-.lab {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid #e5e7eb;
+/* ===== EXERCISE CARD ===== */
+.exercise-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
 }
 
-.lab h3 {
-    margin-bottom: 10px;
-    font-size: 17px;
+.exercise-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.08);
 }
 
-pre {
-    background: #f3f4f6;
-    padding: 15px;
-    border-radius: 6px;
-    overflow-x: auto;
-    position: relative;
-    font-size: 13px;
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-code { font-family: Consolas, monospace; }
+.exercise-title {
+    font-size: 20px;
+    font-weight: 600;
+}
 
-.copy-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: #2563eb;
+.badge {
+    background: #6366f1;
     color: white;
-    border: none;
-    padding: 4px 10px;
+    padding: 6px 14px;
+    border-radius: 50px;
     font-size: 12px;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
-.copy-btn:hover { background: #1e40af; }
-
-.note {
-    background: #fff7ed;
-    padding: 12px;
-    border-left: 4px solid #f59e0b;
-    margin: 15px 0;
+.objective {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
     font-size: 14px;
 }
 
-.footer {
-    margin-top: 50px;
-    padding: 20px;
-    text-align: center;
+.step {
+    margin-bottom: 20px;
+}
+
+.step h4 {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.step p {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 14px;
+    border-radius: 10px;
+    overflow-x: auto;
     font-size: 13px;
-    color: #6b7280;
+}
+
+.note {
+    background: #ecfeff;
+    border-left: 4px solid #06b6d4;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 13px;
+    color: #64748b;
 }
 </style>
 </head>
@@ -138,249 +144,74 @@ code { font-family: Consolas, monospace; }
 
 <header>
     <h1>RR Skillverse – Blazor Learning Portal</h1>
-    <p>Hands-on labs designed by a Senior Corporate Trainer & Developer</p>
+    <p>Hands-on learning designed by a Senior Corporate Trainer & Developer</p>
 </header>
-
-<div class="navbar">
-    <a href="#path1">Learning Path 1</a>
-    <a href="#path2">Learning Path 2</a>
-</div>
 
 <div class="container">
 
-<details open id="path1">
-<summary>Learning Path 1: Blazor Foundations (Hands-on Guided)</summary>
+<div class="section-title">Learning Path 1: Blazor Foundations</div>
 
-<!-- LAB 1 -->
-<div class="lab">
-<h3>Lab 1 – Create Your First Blazor Server Application</h3>
+<!-- ================= EXERCISE 1 ================= -->
+<div class="exercise-card">
 
-<p><strong>Objective:</strong> Understand how to create and run a Blazor Server project.</p>
+    <div class="exercise-header">
+        <div class="exercise-title">Exercise 1 – Create Your First Blazor Server Application</div>
+        <div class="badge">Foundation</div>
+    </div>
 
-<h4>Step 1: Open Terminal / Command Prompt</h4>
-<p>Run the following command:</p>
+    <div class="objective">
+        <strong>Objective:</strong> Create and run your first Blazor Server project and understand how the application starts.
+    </div>
 
-<pre><code>
-dotnet new blazorserver -n FirstBlazorApp
-</code></pre>
+    <div class="step">
+        <h4>Step 1 – Verify .NET Installation</h4>
+        <p>Open Terminal or Command Prompt and run:</p>
+<pre><code>dotnet --version</code></pre>
+        <p>If a version number appears, .NET SDK is installed.</p>
+    </div>
 
-<p>This creates a new Blazor Server project.</p>
+    <div class="step">
+        <h4>Step 2 – Create a New Blazor Server Project</h4>
+<pre><code>dotnet new blazorserver -n FirstBlazorApp</code></pre>
+        <p>This creates a new Blazor Server project.</p>
+    </div>
 
-<h4>Step 2: Navigate into Project</h4>
+    <div class="step">
+        <h4>Step 3 – Navigate Into Project Folder</h4>
+<pre><code>cd FirstBlazorApp</code></pre>
+    </div>
 
-<pre><code>
-cd FirstBlazorApp
-</code></pre>
+    <div class="step">
+        <h4>Step 4 – Run the Application</h4>
+<pre><code>dotnet run</code></pre>
+        <p>Wait until you see the local hosting URL.</p>
+    </div>
 
-<h4>Step 3: Run the Application</h4>
+    <div class="step">
+        <h4>Step 5 – Open in Browser</h4>
+<pre><code>https://localhost:5001</code></pre>
+        <p>You should see the default Blazor template.</p>
+    </div>
 
-<pre><code>
-dotnet run
-</code></pre>
+    <div class="note">
+        💡 <strong>What You Learned:</strong><br>
+        • How to create a Blazor Server app<br>
+        • How to run it locally<br>
+        • Basic project structure<br>
+        • That Blazor Server runs UI on server and syncs using SignalR
+    </div>
 
-<h4>Step 4: Open Browser</h4>
-<p>Navigate to:</p>
-
-<pre><code>
-https://localhost:5001
-</code></pre>
-
-<div class="note">
-💡 You just created and executed a Blazor Server application.  
-Blazor Server uses SignalR to maintain a live connection with the browser.
 </div>
-</div>
+<!-- ================= END EXERCISE 1 ================= -->
 
-<!-- LAB 2 -->
-<div class="lab">
-<h3>Lab 2 – Understand Two-Way Binding</h3>
+<!-- Future exercises will go here -->
+<!-- Just duplicate the exercise-card block -->
 
-<p><strong>Objective:</strong> Learn how UI and C# variables stay in sync.</p>
-
-<h4>Step 1: Open</h4>
-<p>Go to: <code>Pages/Counter.razor</code></p>
-
-<h4>Step 2: Replace Entire File Content With:</h4>
-
-<pre><code>
-@page "/counter"
-
-&lt;input @bind="name" placeholder="Enter your name" /&gt;
-
-&lt;p&gt;Hello @name&lt;/p&gt;
-
-@code {
-    string name = "";
-}
-</code></pre>
-
-<h4>Step 3: Save and Run</h4>
-
-<p>Type inside input field.</p>
-<p>Observe that text updates instantly without refreshing.</p>
-
-<div class="note">
-💡 <strong>@bind</strong> connects the input field with C# variable.  
-When one changes → the other updates automatically.
-</div>
 </div>
 
-<!-- LAB 3 -->
-<div class="lab">
-<h3>Lab 3 – Build Basic Todo Application</h3>
-
-<p><strong>Objective:</strong> Understand loops and state.</p>
-
-<h4>Step 1: Create New Page</h4>
-<p>Create file: <code>Pages/Todo.razor</code></p>
-
-<h4>Step 2: Add Below Code</h4>
-
-<pre><code>
-@page "/todo"
-
-&lt;h3&gt;Todo List&lt;/h3&gt;
-
-&lt;input @bind="newTask" /&gt;
-&lt;button @onclick="AddTask"&gt;Add&lt;/button&gt;
-
-&lt;ul&gt;
-@foreach (var item in todos)
-{
-    &lt;li&gt;@item&lt;/li&gt;
-}
-&lt;/ul&gt;
-
-@code {
-    string newTask;
-    List&lt;string&gt; todos = new();
-
-    void AddTask()
-    {
-        if (!string.IsNullOrWhiteSpace(newTask))
-        {
-            todos.Add(newTask);
-            newTask = "";
-        }
-    }
-}
-</code></pre>
-
-<h4>Step 3: Add Navigation Link</h4>
-<p>Open <code>Shared/NavMenu.razor</code></p>
-
-<p>Add:</p>
-
-<pre><code>
-&lt;NavLink href="todo"&gt;Todo&lt;/NavLink&gt;
-</code></pre>
-
-<h4>Step 4: Run & Test</h4>
-
-<ul>
-<li>Add a task</li>
-<li>Observe it appears in list</li>
-</ul>
-
-<div class="note">
-💡 The <strong>foreach</strong> loop renders UI dynamically from C# list.
-</div>
-</div>
-
-<!-- LAB 4 -->
-<div class="lab">
-<h3>Lab 4 – Add Delete Functionality</h3>
-
-<p><strong>Objective:</strong> Modify component state.</p>
-
-<h4>Step 1: Modify the Loop</h4>
-
-Replace the <code>&lt;li&gt;</code> block with:
-
-<pre><code>
-&lt;li&gt;
-    @item
-    &lt;button @onclick="() =&gt; RemoveTask(item)"&gt;Delete&lt;/button&gt;
-&lt;/li&gt;
-</code></pre>
-
-<h4>Step 2: Add Remove Method</h4>
-
-<pre><code>
-void RemoveTask(string task)
-{
-    todos.Remove(task);
-}
-</code></pre>
-
-<h4>Step 3: Test</h4>
-
-<ul>
-<li>Add tasks</li>
-<li>Delete tasks</li>
-</ul>
-
-<div class="note">
-💡 Removing item from list automatically re-renders component.
-</div>
-</div>
-
-<!-- LAB 5 -->
-<div class="lab">
-<h3>Lab 5 – Convert Todo Item into Reusable Component</h3>
-
-<p><strong>Objective:</strong> Learn component reusability.</p>
-
-<h4>Step 1: Create File</h4>
-<p><code>Shared/TodoItem.razor</code></p>
-
-<h4>Step 2: Add Code</h4>
-
-<pre><code>
-&lt;li&gt;@Item&lt;/li&gt;
-
-@code {
-    [Parameter]
-    public string Item { get; set; }
-}
-</code></pre>
-
-<h4>Step 3: Update Todo Page Loop</h4>
-
-Replace:
-
-<pre><code>
-&lt;li&gt;@item&lt;/li&gt;
-</code></pre>
-
-With:
-
-<pre><code>
-&lt;TodoItem Item="item" /&gt;
-</code></pre>
-
-<h4>Step 4: Run & Verify</h4>
-
-<div class="note">
-💡 Components make UI reusable and clean.
-</div>
-</div>
-
-</details>
-</div>
-
-<div class="footer">
-Next Learning Paths: Authentication • API Integration • Deployment • Performance
-</div>
-
-<script>
-function copyCode(button) {
-    const code = button.parentElement.querySelector("code").innerText;
-    navigator.clipboard.writeText(code);
-    button.innerText = "Copied!";
-    setTimeout(() => button.innerText = "Copy", 2000);
-}
-</script>
+<footer>
+More exercises coming soon: Components • Routing • DI • Logging • Real-Time Sync
+</footer>
 
 </body>
 </html>
