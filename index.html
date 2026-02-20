@@ -404,6 +404,198 @@ footer {
 
 </div>
 </div>
+    <!-- ================= MODULE 3 ================= -->
+<div class="section-title">Module 3: Components & Reusability</div>
+
+<!-- ================= EXERCISE 6 ================= -->
+<div class="exercise-card">
+
+    <div class="exercise-header">
+        <div class="exercise-title">Exercise 6 – Create Your First Reusable Component</div>
+        <div class="badge">Core Concept</div>
+    </div>
+
+    <div class="objective">
+        <strong>Objective:</strong> Learn how to create and use a reusable Razor component.
+    </div>
+
+    <div class="step">
+        <h4>Step 1 – Create Component File</h4>
+        <p>Create a new file inside the Shared folder:</p>
+        <pre><code>Shared/StudentCard.razor</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 2 – Add Component Markup</h4>
+<pre><code>
+&lt;div style="border:1px solid #ddd; padding:10px; border-radius:8px; margin-bottom:10px;"&gt;
+    &lt;h4&gt;@Name&lt;/h4&gt;
+&lt;/div&gt;
+
+@code {
+    [Parameter]
+    public string Name { get; set; }
+}
+</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 3 – Use Component in a Page</h4>
+        <p>Open <code>Pages/ListDemo.razor</code></p>
+        <p>Replace the foreach loop with:</p>
+
+<pre><code>
+@foreach (var student in students)
+{
+    &lt;StudentCard Name="student" /&gt;
+}
+</code></pre>
+    </div>
+
+    <div class="note">
+        💡 Components help break UI into reusable pieces.
+    </div>
+
+</div>
+
+
+<!-- ================= EXERCISE 7 ================= -->
+<div class="exercise-card">
+
+    <div class="exercise-header">
+        <div class="exercise-title">Exercise 7 – Passing Multiple Parameters</div>
+        <div class="badge">Intermediate</div>
+    </div>
+
+    <div class="objective">
+        <strong>Objective:</strong> Pass multiple values from parent to component.
+    </div>
+
+    <div class="step">
+        <h4>Step 1 – Modify StudentCard Component</h4>
+        <p>Add another parameter:</p>
+
+<pre><code>
+[Parameter]
+public int Age { get; set; }
+</code></pre>
+
+        <p>Update markup:</p>
+
+<pre><code>
+&lt;p&gt;Age: @Age&lt;/p&gt;
+</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 2 – Update Parent Page</h4>
+<pre><code>
+&lt;StudentCard Name="student" Age="25" /&gt;
+</code></pre>
+    </div>
+
+    <div class="note">
+        💡 Parent passes data → child receives using [Parameter].
+    </div>
+
+</div>
+
+
+<!-- ================= EXERCISE 8 ================= -->
+<div class="exercise-card">
+
+    <div class="exercise-header">
+        <div class="exercise-title">Exercise 8 – Child to Parent Communication</div>
+        <div class="badge">Important</div>
+    </div>
+
+    <div class="objective">
+        <strong>Objective:</strong> Learn how child component notifies parent using EventCallback.
+    </div>
+
+    <div class="step">
+        <h4>Step 1 – Modify StudentCard</h4>
+        <p>Add delete button:</p>
+
+<pre><code>
+&lt;button @onclick="Delete"&gt;Remove&lt;/button&gt;
+
+@code {
+    [Parameter]
+    public EventCallback OnRemove { get; set; }
+
+    async Task Delete()
+    {
+        await OnRemove.InvokeAsync();
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 2 – Handle Event in Parent</h4>
+
+<pre><code>
+&lt;StudentCard Name="student" OnRemove="RemoveStudent" /&gt;
+
+@code {
+    void RemoveStudent()
+    {
+        students.RemoveAt(0);
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="note">
+        💡 EventCallback allows child component to notify parent.
+    </div>
+
+</div>
+
+
+<!-- ================= EXERCISE 9 ================= -->
+<div class="exercise-card">
+
+    <div class="exercise-header">
+        <div class="exercise-title">Exercise 9 – Component Styling & Reusability</div>
+        <div class="badge">Design</div>
+    </div>
+
+    <div class="objective">
+        <strong>Objective:</strong> Improve UI by adding styling and layout separation.
+    </div>
+
+    <div class="step">
+        <h4>Step 1 – Move Inline Styles to CSS</h4>
+        <p>Open <code>wwwroot/css/app.css</code></p>
+        <p>Add:</p>
+
+<pre><code>
+.student-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+</code></pre>
+    </div>
+
+    <div class="step">
+        <h4>Step 2 – Update Component</h4>
+
+<pre><code>
+&lt;div class="student-card"&gt;
+    &lt;h4&gt;@Name&lt;/h4&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="note">
+        💡 Clean separation of UI and styling improves maintainability.
+    </div>
+
+</div>
 
 
 <footer>
