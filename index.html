@@ -3,103 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="icon" href="data:,✨">
-<title>✨ RR Skillverse | Blazor Learning Portal (.NET 6)</title>
+<title>RR Skillverse | Blazor Server Lab (.NET 6)</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #f8fafc, #eef2ff);
+    background: #f8fafc;
+    margin: 0;
     color: #1e293b;
 }
 
 header {
-    padding: 40px 20px;
-    text-align: center;
+    background: #1e293b;
+    color: white;
+    padding: 25px;
 }
 
 header h1 {
-    font-size: 30px;
-    font-weight: 600;
-}
-
-header p {
-    font-size: 14px;
-    color: #64748b;
-    margin-top: 8px;
+    margin: 0;
+    font-size: 22px;
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
-.section-title {
-    font-size: 22px;
-    font-weight: 600;
-    margin: 50px 0 25px 0;
-}
-
-.exercise-card {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-    transition: all 0.3s ease;
-}
-
-.exercise-card:hover {
-    transform: translateY(-4px);
-}
-
-.exercise-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.exercise-title {
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.badge {
-    background: #6366f1;
-    color: white;
-    padding: 6px 14px;
-    border-radius: 50px;
-    font-size: 12px;
-}
-
-.objective {
-    background: #f1f5f9;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
+h2 {
+    margin-top: 50px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
 }
 
 .step {
-    margin-bottom: 20px;
+    margin: 25px 0;
 }
 
-.step h4 {
-    margin-bottom: 6px;
+.step-number {
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
 pre {
     background: #0f172a;
     color: #e2e8f0;
     padding: 14px;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow-x: auto;
     font-size: 13px;
 }
@@ -107,10 +59,16 @@ pre {
 .note {
     background: #ecfeff;
     border-left: 4px solid #06b6d4;
-    padding: 14px;
-    border-radius: 8px;
-    font-size: 14px;
-    margin-top: 20px;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.verify {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
 }
 
 footer {
@@ -125,66 +83,70 @@ footer {
 <body>
 
 <header>
-<h1>RR Skillverse – Blazor Learning Portal</h1>
-<p>Enterprise Learning Path – Blazor Server (.NET 6)</p>
+<h1>RR Skillverse – Blazor Server Hands-On Lab (.NET 6)</h1>
 </header>
 
 <div class="container">
 
-<div class="section-title">Module 1 – Create Blazor Server App (.NET 6)</div>
+<h2>Lab Overview</h2>
+<p>In this lab, you will build a Helpdesk Portal using Blazor Server (.NET 6) and understand how real-time UI updates work.</p>
 
-<div class="exercise-card">
-<div class="exercise-header">
-<div class="exercise-title">Exercise 1 – Create Your First Blazor Server Application</div>
-<div class="badge">Foundation</div>
-</div>
+<h2>Prerequisites</h2>
+<ul>
+<li>.NET 6 SDK installed</li>
+<li>Visual Studio 2022 OR VS Code</li>
+<li>Basic C# knowledge</li>
+</ul>
 
-<div class="objective">
-<strong>Objective:</strong> Understand how Blazor Server boots and how UI is rendered using SignalR.
+<hr>
+
+<h2>Task 1 – Create Blazor Server Project</h2>
+
+<div class="step">
+<div class="step-number">Step 1: Open Terminal</div>
+<p>Open Command Prompt or Terminal.</p>
 </div>
 
 <div class="step">
-<h4>Create Project</h4>
-<pre><code>dotnet new blazorserver -n FirstBlazorApp
-cd FirstBlazorApp
-dotnet run</code></pre>
+<div class="step-number">Step 2: Create Project</div>
+<pre><code>dotnet new blazorserver -n HelpdeskPortal</code></pre>
 </div>
 
-<div class="note">
-💡 Blazor Server renders UI on server and syncs UI changes over SignalR.
-</div>
-</div>
-
-<div class="section-title">Module 2 – Razor & State</div>
-
-<div class="exercise-card">
-<div class="exercise-header">
-<div class="exercise-title">Two-Way Binding</div>
-<div class="badge">Beginner</div>
+<div class="step">
+<div class="step-number">Step 3: Navigate to Project</div>
+<pre><code>cd HelpdeskPortal</code></pre>
 </div>
 
-<pre><code>@page "/binding"
-
-&lt;input @bind="name" placeholder="Enter name" /&gt;
-
-&lt;p&gt;Hello @name&lt;/p&gt;
-
-@code {
-    private string name = string.Empty;
-}</code></pre>
-
-<div class="note">
-💡 @bind creates two-way binding between UI and C# variable.
-</div>
+<div class="step">
+<div class="step-number">Step 4: Run Application</div>
+<pre><code>dotnet run</code></pre>
 </div>
 
-<div class="section-title">Module 3 – Helpdesk Enterprise Demo</div>
-
-<div class="exercise-card">
-<div class="exercise-header">
-<div class="exercise-title">Ticket Model</div>
-<div class="badge">Data Layer</div>
+<div class="verify">
+✔ You should see: “Now listening on https://localhost:xxxx”
 </div>
+
+<hr>
+
+<h2>Task 2 – Create Ticket Model</h2>
+
+<div class="step">
+<div class="step-number">Step 1: Open Project in Visual Studio</div>
+<p>Open the HelpdeskPortal folder.</p>
+</div>
+
+<div class="step">
+<div class="step-number">Step 2: Create Folder</div>
+<p>Right click project → Add → New Folder → Name it <strong>Models</strong></p>
+</div>
+
+<div class="step">
+<div class="step-number">Step 3: Create Class</div>
+<p>Inside Models → Add → Class → Name it <strong>Ticket.cs</strong></p>
+</div>
+
+<div class="step">
+<div class="step-number">Step 4: Replace Code</div>
 
 <pre><code>public class Ticket
 {
@@ -195,15 +157,32 @@ dotnet run</code></pre>
     public bool IsResolved { get; set; }
     public DateTime CreatedAt { get; set; }
 }</code></pre>
+
 </div>
 
-<div class="exercise-card">
-<div class="exercise-header">
-<div class="exercise-title">TicketService Implementation</div>
-<div class="badge">Business Logic</div>
+<div class="note">
+Model defines structure only. No business logic here.
 </div>
 
-<pre><code>public class TicketService
+<hr>
+
+<h2>Task 3 – Create Ticket Service</h2>
+
+<div class="step">
+<div class="step-number">Step 1: Create Services Folder</div>
+<p>Right click project → Add → New Folder → Name it <strong>Services</strong></p>
+</div>
+
+<div class="step">
+<div class="step-number">Step 2: Add TicketService.cs</div>
+</div>
+
+<div class="step">
+<div class="step-number">Step 3: Paste Service Code</div>
+
+<pre><code>using HelpdeskPortal.Models;
+
+public class TicketService
 {
     private readonly List&lt;Ticket&gt; tickets = new();
     private int nextId = 1;
@@ -211,9 +190,6 @@ dotnet run</code></pre>
     public event Action? OnChange;
 
     public List&lt;Ticket&gt; GetTickets() =&gt; tickets;
-
-    public Ticket? GetById(int id) =&gt;
-        tickets.FirstOrDefault(t =&gt; t.Id == id);
 
     public void AddTicket(Ticket ticket)
     {
@@ -225,7 +201,7 @@ dotnet run</code></pre>
 
     public void ResolveTicket(int id)
     {
-        var ticket = GetById(id);
+        var ticket = tickets.FirstOrDefault(t =&gt; t.Id == id);
         if (ticket != null)
         {
             ticket.IsResolved = true;
@@ -236,111 +212,48 @@ dotnet run</code></pre>
     private void NotifyStateChanged() =&gt; OnChange?.Invoke();
 }</code></pre>
 
-<div class="note">
-💡 Singleton service shares state across all connected users in Blazor Server.
-</div>
 </div>
 
-<div class="exercise-card">
-<div class="exercise-header">
-<div class="exercise-title">Tickets Page with Lifecycle</div>
-<div class="badge">UI + Events</div>
+<hr>
+
+<h2>Task 4 – Register Service</h2>
+
+<div class="step">
+<div class="step-number">Step 1: Open Program.cs</div>
 </div>
 
-<pre><code>@page "/tickets"
-@inject TicketService ticketService
-@implements IDisposable
+<div class="step">
+<div class="step-number">Step 2: Add This Line</div>
 
-@foreach (var ticket in tickets)
-{
-    &lt;TicketCard Ticket="ticket" /&gt;
-}
+<pre><code>builder.Services.AddSingleton&lt;TicketService&gt;();</code></pre>
 
-@code {
-    private List&lt;Ticket&gt; tickets = new();
-
-    protected override void OnInitialized()
-    {
-        tickets = ticketService.GetTickets();
-        ticketService.OnChange += Refresh;
-    }
-
-    private void Refresh()
-    {
-        InvokeAsync(() =&gt;
-        {
-            tickets = ticketService.GetTickets();
-            StateHasChanged();
-        });
-    }
-
-    public void Dispose()
-    {
-        ticketService.OnChange -= Refresh;
-    }
-}</code></pre>
+</div>
 
 <div class="note">
-💡 InvokeAsync ensures UI updates occur on correct synchronization context.
-</div>
-</div>
-
-<div class="exercise-card">
-<div class="exercise-header">
-<div class="exercise-title">Create Ticket Form (EditForm Pattern)</div>
-<div class="badge">Form Binding</div>
+Singleton shares data across all connected users.
 </div>
 
-<pre><code>@page "/create"
-@inject TicketService ticketService
-@inject NavigationManager nav
+<hr>
 
-&lt;EditForm Model="ticket" OnValidSubmit="Save"&gt;
-    &lt;InputText @bind-Value="ticket.Title" /&gt;
-    &lt;InputTextArea @bind-Value="ticket.Description" /&gt;
-    &lt;InputText @bind-Value="ticket.CreatedBy" /&gt;
-    &lt;button type="submit"&gt;Submit&lt;/button&gt;
-&lt;/EditForm&gt;
+<h2>Task 5 – Verify Real-Time Behavior</h2>
 
-@code {
-    private Ticket ticket = new();
-
-    private void Save()
-    {
-        ticketService.AddTicket(ticket);
-        nav.NavigateTo("/tickets");
-    }
-}</code></pre>
-
+<div class="step">
+<ul>
+<li>Run application</li>
+<li>Open two browser windows</li>
+<li>Create ticket in one</li>
+<li>Observe other browser updating instantly</li>
+</ul>
 </div>
 
-<div class="exercise-card">
-<div class="exercise-header">
-<div class="exercise-title">Route Parameter Example</div>
-<div class="badge">Routing</div>
-</div>
-
-<pre><code>@page "/ticket/{Id:int}"
-@inject TicketService ticketService
-
-@code {
-    [Parameter]
-    public int Id { get; set; }
-
-    private Ticket? ticket;
-
-    protected override void OnParametersSet()
-    {
-        ticket = ticketService.GetById(Id);
-    }
-}</code></pre>
-
+<div class="verify">
+✔ You should see automatic UI refresh without reloading page.
 </div>
 
 </div>
 
 <footer>
-RR Skillverse • .NET 6 • Blazor Server • Enterprise Hands-on Learning
+RR Skillverse • Blazor Server • .NET 6 Lab Guide
 </footer>
 
 </body>
