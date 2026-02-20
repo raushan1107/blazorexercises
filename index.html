@@ -8,9 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -20,7 +18,7 @@ body {
     line-height: 1.6;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
     background: #ffffff;
     border-bottom: 1px solid #e5e7eb;
@@ -40,14 +38,32 @@ header p {
     color: #6b7280;
 }
 
-/* ===== MAIN ===== */
+/* NAVIGATION */
+.navbar {
+    background: #111827;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* MAIN */
 .container {
     max-width: 950px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
-/* ===== LEARNING PATH ===== */
+/* LEARNING PATH */
 details {
     background: white;
     border: 1px solid #e5e7eb;
@@ -72,7 +88,6 @@ summary {
 .lab h3 {
     margin-bottom: 10px;
     font-size: 17px;
-    color: #111827;
 }
 
 pre {
@@ -84,9 +99,7 @@ pre {
     font-size: 13px;
 }
 
-code {
-    font-family: Consolas, monospace;
-}
+code { font-family: Consolas, monospace; }
 
 .copy-btn {
     position: absolute;
@@ -101,9 +114,7 @@ code {
     cursor: pointer;
 }
 
-.copy-btn:hover {
-    background: #1e40af;
-}
+.copy-btn:hover { background: #1e40af; }
 
 .note {
     background: #fff7ed;
@@ -130,185 +141,39 @@ code {
     <p>Hands-on labs designed by a Senior Corporate Trainer & Developer</p>
 </header>
 
+<div class="navbar">
+    <a href="#path1">Blazor Foundations</a>
+    <a href="#path2">Structured Application Development</a>
+</div>
+
 <div class="container">
 
-<details open>
+<!-- ================= LEARNING PATH 1 ================= -->
+<details open id="path1">
 <summary>Learning Path 1: Blazor Foundations</summary>
 
-<!-- LAB 1 -->
+<!-- LAB 6 CORRECTED -->
 <div class="lab">
-<h3>Lab 1 – Create Your First Blazor Application</h3>
-
-<p><strong>Objective:</strong> Create and run your first Blazor Server application.</p>
-
-<h4>Step 1: Install .NET 6 SDK</h4>
-<p>Verify installation:</p>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-dotnet --version
-</code></pre>
-
-<p>If not installed, download .NET 6 SDK from official Microsoft website.</p>
-
-<h4>Step 2: Create Project</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-dotnet new blazorserver -n FirstBlazorApp
-cd FirstBlazorApp
-dotnet run
-</code></pre>
-
-<h4>Step 3: Open in Browser</h4>
-<p>Navigate to:</p>
-
-<pre><code>https://localhost:5001</code></pre>
-
-<p><strong>Expected Result:</strong> You should see the default Blazor template running.</p>
-
-<p><strong>What You Learned:</strong> How to create and run a Blazor Server app.</p>
-</div>
-
-<!-- LAB 2 -->
-<div class="lab">
-<h3>Lab 2 – Modify Counter Component</h3>
-
-<p><strong>Objective:</strong> Understand Razor components and two-way binding.</p>
-
-<h4>Step 1: Open Counter.razor</h4>
-<p>Navigate to <code>Pages/Counter.razor</code></p>
-
-<h4>Step 2: Replace Code With</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-@page "/counter"
-
-&lt;input @bind="name" placeholder="Enter your name" /&gt;
-&lt;p&gt;Hello @name&lt;/p&gt;
-
-@code {
-    string name = "";
-}
-</code></pre>
-
-<h4>Step 3: Save and Refresh</h4>
-<p>Type inside the input field and observe dynamic updates.</p>
-
-<p><strong>Expected Result:</strong> Greeting updates instantly without page reload.</p>
-
-<p><strong>Concept Covered:</strong> Razor syntax, @bind, component rendering.</p>
-</div>
-
-<!-- LAB 3 -->
-<div class="lab">
-<h3>Lab 3 – Build Todo List</h3>
-
-<p><strong>Objective:</strong> Build a basic Todo application.</p>
-
-<h4>Step 1: Create New Razor Page</h4>
-<p>Create <code>Pages/Todo.razor</code></p>
-
-<h4>Step 2: Add Below Code</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-@page "/todo"
-
-&lt;input @bind="newTask" /&gt;
-&lt;button @onclick="AddTask"&gt;Add&lt;/button&gt;
-
-&lt;ul&gt;
-@foreach (var item in todos)
-{
-    &lt;li&gt;@item&lt;/li&gt;
-}
-&lt;/ul&gt;
-
-@code {
-    string newTask;
-    List&lt;string&gt; todos = new();
-
-    void AddTask()
-    {
-        if (!string.IsNullOrWhiteSpace(newTask))
-        {
-            todos.Add(newTask);
-            newTask = "";
-        }
-    }
-}
-</code></pre>
-
-<h4>Step 3: Add Navigation Link</h4>
-<p>Update <code>NavMenu.razor</code> to include Todo link.</p>
-
-<p><strong>Expected Result:</strong> You can add tasks dynamically.</p>
-
-<p><strong>Concept Covered:</strong> Loops, state management, UI re-rendering.</p>
-</div>
-
-<!-- LAB 4 -->
-<div class="lab">
-<h3>Lab 4 – Add Delete Functionality</h3>
-
-<p><strong>Objective:</strong> Enhance Todo app with delete feature.</p>
-
-<h4>Modify the Loop</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-&lt;li&gt;
-    @item
-    &lt;button @onclick="() =&gt; RemoveTask(item)"&gt;Delete&lt;/button&gt;
-&lt;/li&gt;
-
-void RemoveTask(string task)
-{
-    todos.Remove(task);
-}
-</code></pre>
-
-<p><strong>Expected Result:</strong> You can delete tasks from list.</p>
-</div>
-
-<!-- LAB 5 -->
-<div class="lab">
-<h3>Lab 5 – Convert Todo Item into Component</h3>
-
-<p><strong>Objective:</strong> Learn component reusability.</p>
-
-<h4>Create File: Shared/TodoItem.razor</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-&lt;li&gt;@Item&lt;/li&gt;
-
-@code {
-    [Parameter]
-    public string Item { get; set; }
-}
-</code></pre>
-
-<p>Update Todo page to use:</p>
-
-<pre><code>&lt;TodoItem Item="item" /&gt;</code></pre>
-
-<p><strong>Concept Covered:</strong> Component parameters and reusability.</p>
-</div>
-
-<!-- LAB 6 -->
-<div class="lab">
-<h3>Lab 6 – Real-Time Sync with SignalR</h3>
+<h3>Lab 6 – Real-Time Sync with SignalR (Corrected)</h3>
 
 <p><strong>Objective:</strong> Enable real-time updates across browsers.</p>
 
-<h4>Step 1: Create Service (Services/TodoService.cs)</h4>
+<h4>Step 1: Service</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
 public class TodoService
 {
     public List&lt;string&gt; Todos { get; } = new();
-    public event Action OnChange;
+    public event Action? OnChange;
 
     public void Add(string task)
     {
         Todos.Add(task);
+        NotifyStateChanged();
+    }
+
+    private void NotifyStateChanged()
+    {
         OnChange?.Invoke();
     }
 }
@@ -320,11 +185,9 @@ public class TodoService
 builder.Services.AddSingleton&lt;TodoService&gt;();
 </code></pre>
 
-<h4>Step 3: Inject into Todo Page</h4>
+<h4>Step 3: Subscribe Safely in Component</h4>
 
 <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-@inject TodoService todoService
-
 @inject TodoService todoService
 @implements IDisposable
 
@@ -345,22 +208,96 @@ public void Dispose()
 </code></pre>
 
 <div class="note">
-Open two browsers.  
-Add task in one window.  
-Observe instant update in second window.  
-Blazor Server uses SignalR internally for real-time communication.
+⚠ In Blazor Server, UI updates must run on the correct Dispatcher thread.  
+We use InvokeAsync(StateHasChanged) to safely refresh UI across browser circuits.
 </div>
 
-<p><strong>Concept Covered:</strong> Dependency Injection, Events, Real-Time UI updates.</p>
+</div>
+</details>
+
+
+<!-- ================= LEARNING PATH 2 ================= -->
+<details id="path2">
+<summary>Learning Path 2: Structured Application Development</summary>
+
+<div class="lab">
+<h3>Lab 7 – Create Task Model</h3>
+
+<p><strong>Objective:</strong> Move from simple strings to structured data.</p>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+public class TaskItem
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public bool IsCompleted { get; set; }
+}
+</code></pre>
+
+<p><strong>Explanation:</strong> Models define the structure of your application data.</p>
+</div>
+
+<div class="lab">
+<h3>Lab 8 – Update Todo to Use TaskItem</h3>
+
+<p>Change list type to:</p>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+List&lt;TaskItem&gt; tasks = new();
+</code></pre>
+
+<p>Display title using:</p>
+
+<pre><code>@task.Title</code></pre>
+</div>
+
+<div class="lab">
+<h3>Lab 9 – Add Completion Toggle</h3>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;input type="checkbox" @bind="task.IsCompleted" /&gt;
+</code></pre>
+
+<p><strong>Explanation:</strong> UI directly binds to model property.</p>
+</div>
+
+<div class="lab">
+<h3>Lab 10 – Navigation Between Pages</h3>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+@inject NavigationManager nav
+nav.NavigateTo("/todo");
+</code></pre>
+
+<p><strong>Explanation:</strong> NavigationManager enables programmatic routing.</p>
+</div>
+
+<div class="lab">
+<h3>Lab 11 – Add Logging</h3>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+_logger.LogInformation("Task added");
+</code></pre>
+
+<p><strong>Explanation:</strong> Logging helps monitor real applications.</p>
+</div>
+
+<div class="lab">
+<h3>Lab 12 – Add Search Feature</h3>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+tasks.Where(t =&gt; t.Title.Contains(searchText));
+</code></pre>
+
+<p><strong>Explanation:</strong> Filter data dynamically without modifying original list.</p>
 </div>
 
 </details>
 
-
 </div>
 
 <div class="footer">
-More Learning Paths will be added as we progress: Authentication, API Integration, Deployment & Performance.
+More Learning Paths will be added: Authentication, API Integration, Deployment & Performance.
 </div>
 
 <script>
