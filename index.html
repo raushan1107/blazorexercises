@@ -404,198 +404,147 @@ footer {
 
 </div>
 </div>
-    <!-- ================= MODULE 3 ================= -->
-<div class="section-title">Module 3: Components & Reusability</div>
+    <div class="exercise-card">
 
-<!-- ================= EXERCISE 6 ================= -->
-<div class="exercise-card">
+<div class="exercise-header">
+    <div class="exercise-title">Exercise 1 – Create Helpdesk Project</div>
+    <div class="badge">Project Setup</div>
+</div>
 
-    <div class="exercise-header">
-        <div class="exercise-title">Exercise 6 – Create Your First Reusable Component</div>
-        <div class="badge">Core Concept</div>
-    </div>
+<div class="objective">
+    <strong>Objective:</strong> Create a new Blazor Server project that will serve as our Helpdesk system.
+</div>
 
-    <div class="objective">
-        <strong>Objective:</strong> Learn how to create and use a reusable Razor component.
-    </div>
+<div class="step">
+    <h4>Step 1 – Open Terminal</h4>
+<pre><code>dotnet new blazorserver -n HelpdeskPortal</code></pre>
+</div>
 
-    <div class="step">
-        <h4>Step 1 – Create Component File</h4>
-        <p>Create a new file inside the Shared folder:</p>
-        <pre><code>Shared/StudentCard.razor</code></pre>
-    </div>
+<div class="step">
+    <h4>Step 2 – Navigate into Project</h4>
+<pre><code>cd HelpdeskPortal</code></pre>
+</div>
 
-    <div class="step">
-        <h4>Step 2 – Add Component Markup</h4>
+<div class="step">
+    <h4>Step 3 – Run Application</h4>
+<pre><code>dotnet run</code></pre>
+</div>
+
+<div class="note">
+💡 You now have the base system ready to extend into a real enterprise-style portal.
+</div>
+
+</div>
+    <div class="exercise-card">
+
+<div class="exercise-header">
+    <div class="exercise-title">Exercise 2 – Create Ticket Model</div>
+    <div class="badge">Data Layer</div>
+</div>
+
+<div class="objective">
+    <strong>Objective:</strong> Define the structure of a Helpdesk Ticket.
+</div>
+
+<div class="step">
+    <h4>Step 1 – Create Folder</h4>
+    <p>Create a new folder: <code>Models</code></p>
+</div>
+
+<div class="step">
+    <h4>Step 2 – Create File</h4>
+    <p>Create: <code>Models/Ticket.cs</code></p>
+</div>
+
+<div class="step">
+    <h4>Step 3 – Add Model Code</h4>
 <pre><code>
-&lt;div style="border:1px solid #ddd; padding:10px; border-radius:8px; margin-bottom:10px;"&gt;
-    &lt;h4&gt;@Name&lt;/h4&gt;
-&lt;/div&gt;
-
-@code {
-    [Parameter]
-    public string Name { get; set; }
-}
-</code></pre>
-    </div>
-
-    <div class="step">
-        <h4>Step 3 – Use Component in a Page</h4>
-        <p>Open <code>Pages/ListDemo.razor</code></p>
-        <p>Replace the foreach loop with:</p>
-
-<pre><code>
-@foreach (var student in students)
+public class Ticket
 {
-    &lt;StudentCard Name="student" /&gt;
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string CreatedBy { get; set; }
+    public bool IsResolved { get; set; }
+    public DateTime CreatedAt { get; set; }
 }
 </code></pre>
-    </div>
+</div>
 
-    <div class="note">
-        💡 Components help break UI into reusable pieces.
-    </div>
+<div class="note">
+💡 Model represents pure data structure without business logic.
+</div>
+
+</div>
+    <div class="exercise-card">
+
+<div class="exercise-header">
+    <div class="exercise-title">Exercise 3 – Create TicketService</div>
+    <div class="badge">Business Logic</div>
+</div>
+
+<div class="objective">
+    <strong>Objective:</strong> Create a Singleton service that manages tickets and notifies UI.
+</div>
+
+<div class="step">
+    <h4>Step 1 – Create Services Folder</h4>
+</div>
+
+<div class="step">
+    <h4>Step 2 – Create File</h4>
+    <p><code>Services/TicketService.cs</code></p>
+</div>
+
+<div class="step">
+    <h4>Step 3 – Add Service Code</h4>
+<pre><code>
+private List&lt;Ticket&gt; tickets = new();
+public event Action OnChange;
+</code></pre>
+
+<p>Add methods:</p>
+<ul>
+<li>AddTicket()</li>
+<li>ResolveTicket()</li>
+<li>GetTickets()</li>
+</ul>
 
 </div>
 
-
-<!-- ================= EXERCISE 7 ================= -->
-<div class="exercise-card">
-
-    <div class="exercise-header">
-        <div class="exercise-title">Exercise 7 – Passing Multiple Parameters</div>
-        <div class="badge">Intermediate</div>
-    </div>
-
-    <div class="objective">
-        <strong>Objective:</strong> Pass multiple values from parent to component.
-    </div>
-
-    <div class="step">
-        <h4>Step 1 – Modify StudentCard Component</h4>
-        <p>Add another parameter:</p>
-
-<pre><code>
-[Parameter]
-public int Age { get; set; }
-</code></pre>
-
-        <p>Update markup:</p>
-
-<pre><code>
-&lt;p&gt;Age: @Age&lt;/p&gt;
-</code></pre>
-    </div>
-
-    <div class="step">
-        <h4>Step 2 – Update Parent Page</h4>
-<pre><code>
-&lt;StudentCard Name="student" Age="25" /&gt;
-</code></pre>
-    </div>
-
-    <div class="note">
-        💡 Parent passes data → child receives using [Parameter].
-    </div>
-
+<div class="note">
+💡 Service manages state. Event allows real-time updates.
 </div>
 
+</div>
+    <div class="exercise-card">
 
-<!-- ================= EXERCISE 8 ================= -->
-<div class="exercise-card">
-
-    <div class="exercise-header">
-        <div class="exercise-title">Exercise 8 – Child to Parent Communication</div>
-        <div class="badge">Important</div>
-    </div>
-
-    <div class="objective">
-        <strong>Objective:</strong> Learn how child component notifies parent using EventCallback.
-    </div>
-
-    <div class="step">
-        <h4>Step 1 – Modify StudentCard</h4>
-        <p>Add delete button:</p>
-
-<pre><code>
-&lt;button @onclick="Delete"&gt;Remove&lt;/button&gt;
-
-@code {
-    [Parameter]
-    public EventCallback OnRemove { get; set; }
-
-    async Task Delete()
-    {
-        await OnRemove.InvokeAsync();
-    }
-}
-</code></pre>
-    </div>
-
-    <div class="step">
-        <h4>Step 2 – Handle Event in Parent</h4>
-
-<pre><code>
-&lt;StudentCard Name="student" OnRemove="RemoveStudent" /&gt;
-
-@code {
-    void RemoveStudent()
-    {
-        students.RemoveAt(0);
-    }
-}
-</code></pre>
-    </div>
-
-    <div class="note">
-        💡 EventCallback allows child component to notify parent.
-    </div>
-
+<div class="exercise-header">
+    <div class="exercise-title">Exercise 4 – Register Service in DI</div>
+    <div class="badge">Dependency Injection</div>
 </div>
 
+<div class="objective">
+    <strong>Objective:</strong> Make TicketService available throughout application.
+</div>
 
-<!-- ================= EXERCISE 9 ================= -->
-<div class="exercise-card">
+<div class="step">
+    <h4>Step 1 – Open Program.cs</h4>
+</div>
 
-    <div class="exercise-header">
-        <div class="exercise-title">Exercise 9 – Component Styling & Reusability</div>
-        <div class="badge">Design</div>
-    </div>
-
-    <div class="objective">
-        <strong>Objective:</strong> Improve UI by adding styling and layout separation.
-    </div>
-
-    <div class="step">
-        <h4>Step 1 – Move Inline Styles to CSS</h4>
-        <p>Open <code>wwwroot/css/app.css</code></p>
-        <p>Add:</p>
-
+<div class="step">
+    <h4>Step 2 – Register Service</h4>
 <pre><code>
-.student-card {
-    border: 1px solid #ddd;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
+builder.Services.AddSingleton&lt;TicketService&gt;();
 </code></pre>
-    </div>
+</div>
 
-    <div class="step">
-        <h4>Step 2 – Update Component</h4>
-
-<pre><code>
-&lt;div class="student-card"&gt;
-    &lt;h4&gt;@Name&lt;/h4&gt;
-&lt;/div&gt;
-</code></pre>
-    </div>
-
-    <div class="note">
-        💡 Clean separation of UI and styling improves maintainability.
-    </div>
+<div class="note">
+💡 Singleton allows shared state across all connected users.
+</div>
 
 </div>
+    
 
 
 <footer>
