@@ -148,82 +148,112 @@ code { font-family: Consolas, monospace; }
 
 <div class="container">
 
-<!-- ================= LEARNING PATH 1 ================= -->
 <details open id="path1">
-<summary>Learning Path 1: Blazor Foundations</summary>
+<summary>Learning Path 1: Blazor Foundations (Hands-on Guided)</summary>
 
 <!-- LAB 1 -->
 <div class="lab">
-<h3>Lab 1 – Create Your First Blazor Application</h3>
+<h3>Lab 1 – Create Your First Blazor Server Application</h3>
 
-<h4>Step 1: Open Terminal</h4>
-<p>Run:</p>
+<p><strong>Objective:</strong> Understand how to create and run a Blazor Server project.</p>
 
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+<h4>Step 1: Open Terminal / Command Prompt</h4>
+<p>Run the following command:</p>
+
+<pre><code>
 dotnet new blazorserver -n FirstBlazorApp
+</code></pre>
+
+<p>This creates a new Blazor Server project.</p>
+
+<h4>Step 2: Navigate into Project</h4>
+
+<pre><code>
 cd FirstBlazorApp
+</code></pre>
+
+<h4>Step 3: Run the Application</h4>
+
+<pre><code>
 dotnet run
 </code></pre>
 
-<h4>Step 2: Open Browser</h4>
-<p>Go to: <code>https://localhost:5001</code></p>
+<h4>Step 4: Open Browser</h4>
+<p>Navigate to:</p>
+
+<pre><code>
+https://localhost:5001
+</code></pre>
 
 <div class="note">
-💡 You have created your first Blazor Server app.
+💡 You just created and executed a Blazor Server application.  
+Blazor Server uses SignalR to maintain a live connection with the browser.
 </div>
 </div>
 
 <!-- LAB 2 -->
 <div class="lab">
-<h3>Lab 2 – Two-Way Binding</h3>
+<h3>Lab 2 – Understand Two-Way Binding</h3>
 
-<h4>Step 1: Open Pages/Counter.razor</h4>
+<p><strong>Objective:</strong> Learn how UI and C# variables stay in sync.</p>
 
-<h4>Step 2: Replace Code</h4>
+<h4>Step 1: Open</h4>
+<p>Go to: <code>Pages/Counter.razor</code></p>
 
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+<h4>Step 2: Replace Entire File Content With:</h4>
+
+<pre><code>
 @page "/counter"
 
-<input @bind="name" placeholder="Enter your name" />
-<p>Hello @name</p>
+&lt;input @bind="name" placeholder="Enter your name" /&gt;
+
+&lt;p&gt;Hello @name&lt;/p&gt;
 
 @code {
     string name = "";
 }
 </code></pre>
 
-<h4>Step 3: Run & Test</h4>
-<p>Type in input and observe instant update.</p>
+<h4>Step 3: Save and Run</h4>
+
+<p>Type inside input field.</p>
+<p>Observe that text updates instantly without refreshing.</p>
 
 <div class="note">
-💡 @bind connects UI and C# variable.
+💡 <strong>@bind</strong> connects the input field with C# variable.  
+When one changes → the other updates automatically.
 </div>
 </div>
 
 <!-- LAB 3 -->
 <div class="lab">
-<h3>Lab 3 – Build Basic Todo List</h3>
+<h3>Lab 3 – Build Basic Todo Application</h3>
 
-<h4>Step 1: Create Pages/Todo.razor</h4>
+<p><strong>Objective:</strong> Understand loops and state.</p>
 
-<h4>Step 2: Add Code</h4>
+<h4>Step 1: Create New Page</h4>
+<p>Create file: <code>Pages/Todo.razor</code></p>
 
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+<h4>Step 2: Add Below Code</h4>
+
+<pre><code>
 @page "/todo"
 
-<input @bind="newTask" />
-<button @onclick="AddTask">Add</button>
+&lt;h3&gt;Todo List&lt;/h3&gt;
 
-<ul>
+&lt;input @bind="newTask" /&gt;
+&lt;button @onclick="AddTask"&gt;Add&lt;/button&gt;
+
+&lt;ul&gt;
 @foreach (var item in todos)
 {
-    <li>@item</li>
+    &lt;li&gt;@item&lt;/li&gt;
 }
-</ul>
+&lt;/ul&gt;
 
 @code {
     string newTask;
-    List<string> todos = new();
+    List&lt;string&gt; todos = new();
 
     void AddTask()
     {
@@ -236,46 +266,78 @@ dotnet run
 }
 </code></pre>
 
-<h4>Step 3: Add Navigation Link in NavMenu.razor</h4>
+<h4>Step 3: Add Navigation Link</h4>
+<p>Open <code>Shared/NavMenu.razor</code></p>
+
+<p>Add:</p>
+
+<pre><code>
+&lt;NavLink href="todo"&gt;Todo&lt;/NavLink&gt;
+</code></pre>
+
+<h4>Step 4: Run & Test</h4>
+
+<ul>
+<li>Add a task</li>
+<li>Observe it appears in list</li>
+</ul>
 
 <div class="note">
-💡 You just implemented state management and looping.
+💡 The <strong>foreach</strong> loop renders UI dynamically from C# list.
 </div>
 </div>
 
 <!-- LAB 4 -->
 <div class="lab">
-<h3>Lab 4 – Add Delete Feature</h3>
+<h3>Lab 4 – Add Delete Functionality</h3>
 
-<h4>Step 1: Modify Loop</h4>
+<p><strong>Objective:</strong> Modify component state.</p>
 
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-<li>
+<h4>Step 1: Modify the Loop</h4>
+
+Replace the <code>&lt;li&gt;</code> block with:
+
+<pre><code>
+&lt;li&gt;
     @item
-    <button @onclick="() => RemoveTask(item)">Delete</button>
-</li>
+    &lt;button @onclick="() =&gt; RemoveTask(item)"&gt;Delete&lt;/button&gt;
+&lt;/li&gt;
+</code></pre>
 
+<h4>Step 2: Add Remove Method</h4>
+
+<pre><code>
 void RemoveTask(string task)
 {
     todos.Remove(task);
 }
 </code></pre>
 
-<h4>Step 2: Test Deleting Items</h4>
+<h4>Step 3: Test</h4>
+
+<ul>
+<li>Add tasks</li>
+<li>Delete tasks</li>
+</ul>
 
 <div class="note">
-💡 You are modifying component state.
+💡 Removing item from list automatically re-renders component.
 </div>
 </div>
 
 <!-- LAB 5 -->
 <div class="lab">
-<h3>Lab 5 – Convert Todo Item into Component</h3>
+<h3>Lab 5 – Convert Todo Item into Reusable Component</h3>
 
-<h4>Step 1: Create Shared/TodoItem.razor</h4>
+<p><strong>Objective:</strong> Learn component reusability.</p>
 
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-<li>@Item</li>
+<h4>Step 1: Create File</h4>
+<p><code>Shared/TodoItem.razor</code></p>
+
+<h4>Step 2: Add Code</h4>
+
+<pre><code>
+&lt;li&gt;@Item&lt;/li&gt;
 
 @code {
     [Parameter]
@@ -283,166 +345,28 @@ void RemoveTask(string task)
 }
 </code></pre>
 
-<h4>Step 2: Update Todo Page Loop</h4>
+<h4>Step 3: Update Todo Page Loop</h4>
+
+Replace:
 
 <pre><code>
-@foreach (var item in todos)
-{
-    <TodoItem Item="item" />
-}
+&lt;li&gt;@item&lt;/li&gt;
 </code></pre>
 
-<div class="note">
-💡 You created a reusable component.
-</div>
-</div>
-
-<!-- LAB 6 CORRECTED -->
-<div class="lab">
-<h3>Lab 6 – Real-Time Sync (Correct Implementation)</h3>
-
-<h4>Step 1: Create Services/TodoService.cs</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-public class TodoService
-{
-    public List<string> Todos { get; } = new();
-    public event Action? OnChange;
-
-    public void Add(string task)
-    {
-        Todos.Add(task);
-        NotifyStateChanged();
-    }
-
-    private void NotifyStateChanged()
-    {
-        OnChange?.Invoke();
-    }
-}
-</code></pre>
-
-<h4>Step 2: Register in Program.cs</h4>
+With:
 
 <pre><code>
-builder.Services.AddSingleton<TodoService>();
+&lt;TodoItem Item="item" /&gt;
 </code></pre>
 
-<h4>Step 3: Subscribe Safely in Todo.razor</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-@inject TodoService todoService
-@implements IDisposable
-
-protected override void OnInitialized()
-{
-    todoService.OnChange += HandleChange;
-}
-
-private async void HandleChange()
-{
-    await InvokeAsync(StateHasChanged);
-}
-
-public void Dispose()
-{
-    todoService.OnChange -= HandleChange;
-}
-</code></pre>
+<h4>Step 4: Run & Verify</h4>
 
 <div class="note">
-⚠ In Blazor Server, rendering must happen on the correct Dispatcher thread.
+💡 Components make UI reusable and clean.
 </div>
 </div>
 
 </details>
-
-
-<!-- ================= LEARNING PATH 2 ================= -->
-<details id="path2">
-<summary>Learning Path 2: Structured Application Development</summary>
-
-<!-- LAB 7 -->
-<div class="lab">
-<h3>Lab 7 – Create Task Model</h3>
-
-<h4>Step 1: Create Models/TaskItem.cs</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-public class TaskItem
-{
-    public int Id { get; set; }
-    public string Title { get; set; }
-    public bool IsCompleted { get; set; }
-}
-</code></pre>
-
-<div class="note">
-💡 Models define structured data.
-</div>
-</div>
-
-<!-- LAB 8 -->
-<div class="lab">
-<h3>Lab 8 – Update Todo to Use TaskItem</h3>
-
-<h4>Step 1: Replace List<string> with List<TaskItem></h4>
-<h4>Step 2: Add TaskItem objects instead of strings</h4>
-<h4>Step 3: Display task.Title</h4>
-</div>
-
-<!-- LAB 9 -->
-<div class="lab">
-<h3>Lab 9 – Add Completion Checkbox</h3>
-
-<h4>Step 1: Add checkbox inside foreach loop</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-<input type="checkbox" @bind="task.IsCompleted" />
-</code></pre>
-
-<div class="note">
-💡 Data binding auto-refreshes UI.
-</div>
-</div>
-
-<!-- LAB 10 -->
-<div class="lab">
-<h3>Lab 10 – Navigation Between Pages</h3>
-
-<h4>Step 1: Create AddTask.razor</h4>
-<h4>Step 2: Inject NavigationManager</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-@inject NavigationManager nav
-nav.NavigateTo("/todo");
-</code></pre>
-</div>
-
-<!-- LAB 11 -->
-<div class="lab">
-<h3>Lab 11 – Add Logging</h3>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-_logger.LogInformation("Task added");
-</code></pre>
-</div>
-
-<!-- LAB 12 -->
-<div class="lab">
-<h3>Lab 12 – Add Search Feature</h3>
-
-<h4>Step 1: Add Search Input</h4>
-
-<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
-<input @bind="searchText" placeholder="Search..." />
-</code></pre>
-
-<h4>Step 2: Filter list using LINQ</h4>
-</div>
-
-</details>
-
 </div>
 
 <div class="footer">
